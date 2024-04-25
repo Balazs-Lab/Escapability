@@ -10,7 +10,7 @@ Additionally, make sure the computer environment have been created before proces
 Process Details:
 
 create config file::
-
+  
   ls data/raw_fastq_files/ | cut -d "_" -f 1 | uniq > names.txt
 
   while read p; do
