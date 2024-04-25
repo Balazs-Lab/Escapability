@@ -2,14 +2,7 @@ import pandas as pd
 import csv
 import numpy as np
 
-
-
-
-
-
-
 ### Analysis 1 - Codon Based Mapping of Average Mutations by Experimental Group
-
 
 def average_mutaton(virus="REJOc",antibody="VRC07",min_coverage = 25):
 
@@ -35,9 +28,7 @@ def average_mutaton(virus="REJOc",antibody="VRC07",min_coverage = 25):
     coverage_df = pd.merge(coverage_df,exp_df[['id','antibody']],on='id',how='left')
     coverage_df['id_antibody'] = coverage_df['id'] + '-' + coverage_df['antibody']
 
-
     escape_df = var_freq_df
-
 
     # list of final sequiencing time point for each mouse
     meta_df = escape_df[["exp","sample","week","sample_id"]].drop_duplicates().reset_index()
@@ -45,33 +36,22 @@ def average_mutaton(virus="REJOc",antibody="VRC07",min_coverage = 25):
     max_week_df = meta_df.loc[max_week_indices].reset_index()[["exp","sample","week","sample_id"]]
 
     # filter by samples in sample list
-#    escape_df = escape_df[escape_df["id"].isin(sample_list)].sort_values("POS_AA")
     escape_df = escape_df[escape_df["sample_id"].isin(sample_list)].sort_values("POS_AA")
     coverage_df = coverage_df[coverage_df["sample_id"].isin(sample_list)]
-#    print(coverage_df)
-
-
-
-    #coverage_df[coverage_df['POS_AA'] == 277]
 
     # count unique samples in each group by coverage
     filtered_coverage = coverage_df[coverage_df['COVERAGE'] >= min_coverage]
 
     pass_filter = filtered_coverage.groupby(by=["POS_AA"]).size().reset_index()
     pass_filter.columns = ["POS_AA","sample_count"]
-#    print(pass_filter)
     
     # merge dfs and normalize by coverage
     aa_df = escape_df.groupby(by=["POS_AA","ALT_AA"])["ALT_FREQ"].sum().reset_index().sort_values("POS_AA")
     aa_df = aa_df.merge(pass_filter,how='left',on="POS_AA").fillna(0)
     aa_df["normalized_freq"] = aa_df['ALT_FREQ'] / aa_df["sample_count"]
-#    print(aa_df)
     aa_df.sort_values("normalized_freq")
-
-
     aa_df.columns = ['aa_pos', 'aa_alt' ,'raw_freq','coverage','freq']
 
-#    pivot_columns = ["aa_pos","*","A","R","N","D","C","E","Q","G","H","I","L","K","M","F","P","S","T","W","Y","V"]
     pivot_columns = ["aa_pos","*","A","R","N","D","C","E","Q","G","H","I","L","K","M","F","P","S","T","W","Y","V","DEL","*i","Ai","Ri","Ni","Di","Ci","Ei","Qi","Gi","Hi","Ii","Li","Ki","Mi","Fi","Pi","Si","Ti","Wi","Yi","Vi"]
     pivot_df = aa_df.pivot(index=["aa_pos"],columns="aa_alt",values="freq").fillna(0).reset_index().sort_values("aa_pos").reindex(columns=pivot_columns).fillna(0)
 
@@ -80,24 +60,18 @@ def average_mutaton(virus="REJOc",antibody="VRC07",min_coverage = 25):
     position = alignment[[virus + " Numbering", "HXB2 Numbering",virus+"_Env","HXB2_Env"]]
     position.columns = ["aa_pos","HXB2_pos",virus+"_aa","HXB2_aa"]
     summary_df = position.merge(pivot_df,how='left',on="aa_pos").fillna(0)
-    #summary_df = pivot_df.merge(position,how='right',on="aa_pos").fillna(0)
-
     summary_df["sum"] = summary_df[summary_df.columns[4:]].sum(axis=1)
     summary_df["WT"] = 1-summary_df["sum"]
-
-
     summary_df.to_csv("../data/escape_data/grouped_summary/" + virus + "_" + antibody + "_avg_freq.csv")
-    
     out_df =summary_df[['HXB2_pos','sum']]
-    
     out_df.columns = ["HXB2_pos",antibody]
     
     return out_df
             
    
-#
+
 ## Process data:
-## Figure XX REJOc with Control
+## Figure: REJOc with Control
 RC = average_mutaton(virus="REJOc",antibody="Control")
 RV = average_mutaton(virus="REJOc",antibody="VRC07")
 RP = average_mutaton(virus="REJOc",antibody="PGDM1400")
@@ -106,9 +80,9 @@ RN = average_mutaton(virus="REJOc",antibody="N6")
 # merge data
 df = RC.merge(RV,how='left',on='HXB2_pos').merge(RP,how='left',on='HXB2_pos').merge(RN,how='left',on='HXB2_pos')
 df.to_csv("../data/escape_data/REJOc Mutant Frequency Summary.csv")
-#
 
-## Figure 2C JRCSF with Control
+
+## Figure: JRCSF with Control
 JC = average_mutaton(virus="JRCSF",antibody="Control")
 JV = average_mutaton(virus="JRCSF",antibody="VRC07")
 JP = average_mutaton(virus="JRCSF",antibody="PGDM1400")
@@ -158,29 +132,6 @@ control = average_mutaton(virus="JDV",antibody="Control")
 antibody = average_mutaton(virus="JDV",antibody="VRC07")
 df = control.merge(antibody,how='left',on='HXB2_pos')
 df.to_csv("../data/escape_data/JRCSF JDV Chimera Mutant Frequency Summary.csv")
-
-#RD_c = average_mutaton(virus="RD",antibody="Control")
-#RD_v = average_mutaton(virus="RD",antibody="VRC07")
-#
-#RDV_c = average_mutaton(virus="RDV",antibody="Control")
-#RDV_v = average_mutaton(virus="RDV",antibody="VRC07")
-#
-## merge data
-#df = RV_c.merge(RV_v,how='left',on='HXB2_pos').merge(RD_c,how='left',on='HXB2_pos').merge(RD_v,how='left',on='HXB2_pos').merge(RDV_c,how='left',on='HXB2_pos').merge(RDV_v,how='left',on='HXB2_pos')
-#df.to_csv("../data/escape_data/REJOc Chimera Mutant Frequency Summary.csv")
-#
-#
-## Chimeras
-#JV_c = average_mutaton(virus="JV",antibody="Control")
-#JV_v = average_mutaton(virus="JV",antibody="VRC07")
-#JD_c = average_mutaton(virus="JD",antibody="Control")
-#JD_v = average_mutaton(virus="JD",antibody="VRC07")
-#JDV_c = average_mutaton(virus="JDV",antibody="Control")
-#JDV_v = average_mutaton(virus="JDV",antibody="VRC07")
-#
-## merge data
-#df = JV_c.merge(JV_v,how='left',on='HXB2_pos').merge(JD_c,how='left',on='HXB2_pos').merge(JD_v,how='left',on='HXB2_pos').merge(JDV_c,how='left',on='HXB2_pos').merge(JDV_v,how='left',on='HXB2_pos')
-#df.to_csv("../data/escape_data/JRCSF Chimera Mutant Frequency Summary.csv")
 
 
 ### Analysis 2 - Site specific mutation frequency by sample
@@ -242,11 +193,8 @@ def mutation_freq_by_sample(virus="REJOc",antibody="VRC07",min_value=0.1,min_cov
     position = alignment[[virus + " Numbering", "HXB2 Numbering",virus+"_Env","HXB2_Env"]]
     position.columns = ["aa_pos","HXB2_pos",virus+"_aa","HXB2_aa"]
     summary_df = position.merge(pivot_df,how='left',on="aa_pos").fillna(0)
-    #summary_df = pivot_df.merge(position,how='right',on="aa_pos").fillna(0)
-
 
     summary_df.to_csv("../data/escape_data/sample_summary/" + virus + "_" + antibody + " " + str(min_value) +"_freq_by_sample.csv")
-
             
 RC = mutation_freq_by_sample(virus="REJOc",antibody="Control",min_value=0)
 RV = mutation_freq_by_sample(virus="REJOc",antibody="VRC07",min_value=0)
@@ -280,24 +228,6 @@ JV = mutation_freq_by_sample(virus="JV",antibody="Control",min_value=0.1)
 JV = mutation_freq_by_sample(virus="JD",antibody="Control",min_value=0.1)
 JDV = mutation_freq_by_sample(virus="JDV",antibody="Control",min_value=0.1)
 
-#RC = mutation_freq_by_sample(virus="REJOc",antibody="Control",min_value=0.25)
-#RV = mutation_freq_by_sample(virus="REJOc",antibody="VRC07",min_value=0.25)
-#RP = mutation_freq_by_sample(virus="REJOc",antibody="PGDM1400",min_value=0.25)
-#RN = mutation_freq_by_sample(virus="REJOc",antibody="N6",min_value=0.25)
-#JC = mutation_freq_by_sample(virus="JRCSF",antibody="Control",min_value=0.25)
-#JV = mutation_freq_by_sample(virus="JRCSF",antibody="VRC07",min_value=0.25)
-#JP = mutation_freq_by_sample(virus="JRCSF",antibody="PGDM1400",min_value=0.25)
-#JN = mutation_freq_by_sample(virus="JRCSF",antibody="N6",min_value=0.25)
-#
-#RC = mutation_freq_by_sample(virus="REJOc",antibody="Control",min_value=0.5)
-#RV = mutation_freq_by_sample(virus="REJOc",antibody="VRC07",min_value=0.5)
-#RP = mutation_freq_by_sample(virus="REJOc",antibody="PGDM1400",min_value=0.5)
-#RN = mutation_freq_by_sample(virus="REJOc",antibody="N6",min_value=0.5)
-#JC = mutation_freq_by_sample(virus="JRCSF",antibody="Control",min_value=0.5)
-#JV = mutation_freq_by_sample(virus="JRCSF",antibody="VRC07",min_value=0.5)
-#JP = mutation_freq_by_sample(virus="JRCSF",antibody="PGDM1400",min_value=0.5)
-#JN = mutation_freq_by_sample(virus="JRCSF",antibody="N6",min_value=0.5)
-
 
 ### Quality Check - Average Coverage per Sample
 coverage_df = pd.read_csv("../data/coverage_merged.csv")
@@ -309,11 +239,8 @@ out_df = pd.merge(coverage_mean,coverage_std, how='outer',on='sample_id')
 out_df.to_csv("../data/escape_data/coverage_summary.csv")
 
 
-
 ### Analysis 3 - Site specific mutations by sample
 
-file_id = "CD5-m264-9"
-virus = "REJOc"
 def mutation_by_sample(file_id, virus):
     """
     Input: variant frequency file
@@ -326,15 +253,13 @@ def mutation_by_sample(file_id, virus):
     coverage_data = pd.read_csv("../data/coverage/"+file_id+"-"+virus+".csv")
     variant_data = pd.read_csv("../data/calls/"+file_id+"-"+virus+".csv")
 
-    #merjge coverage data onto variant dataframe
+    #merge coverage data onto variant dataframe
     escape_df = variant_data[["POS_AA","REF_AA","ALT_AA","ALT_FREQ"]].merge(coverage_data[["POS_AA","COVERAGE"]],how='outer',on='POS_AA').fillna(0)
     escape_df.columns = ["aa_pos","REF_AA","ALT_AA","ALT_FREQ","COVERAGE"]
 
-#    pivot_columns = ["aa_pos","COVERAGE","*","A","R","N","D","C","E","Q","G","H","I","L","K","M","F","P","S","T","W","Y","V"]
     pivot_columns = ["aa_pos","COVERAGE","*","A","R","N","D","C","E","Q","G","H","I","L","K","M","F","P","S","T","W","Y","V","DEL","*i","Ai","Ri","Ni","Di","Ci","Ei","Qi","Gi","Hi","Ii","Li","Ki","Mi","Fi","Pi","Si","Ti","Wi","Yi","Vi"]
 
     pivot_df = escape_df.pivot(index=["aa_pos","COVERAGE"],columns="ALT_AA",values="ALT_FREQ").fillna(0).reset_index().sort_values("aa_pos").reindex(columns=pivot_columns).fillna(0)
-
 
     # align to HXB2 and ensure full range of samples
     alignment = pd.read_excel("../data/HXB2 Alignment.xlsx",sheet_name=virus)
@@ -345,7 +270,6 @@ def mutation_by_sample(file_id, virus):
 
     summary_df["sum"] = summary_df[summary_df.columns[5:]].sum(axis=1)
     summary_df["WT"] = 1-summary_df["sum"]
-
 
     summary_df.to_csv("../data/escape_data/sample_mutations/" + file_id + "_" + virus + "_mut_freq.csv")
 
