@@ -7,7 +7,7 @@ Before running the snakemake, be sure that all files have the correct naming con
 
 Additionally, make sure the computer environment has been created before processing samples. Use a Conda based environment, created from the environment.yml file located in the directory (we named the environment "viral_escape").
 
-Finally, in order for the software to run, the CodonCaller package (not yet fully deployed) needs to be installed. Be sure to do this within the viral_escape conda environment. 
+Finally, in order for the software to run, the CodonCaller package [https://github.com/adamn102/CodonCaller] needs to be installed. Be sure to do this within the viral_escape conda environment. 
 
 Process Details:
 
@@ -22,7 +22,6 @@ done <names.txt
 
 echo samples: > config.yaml
 awk '{ print "    " $0 ": data/fastq_files/" $0 "_R1.fastq.gz" }' < names.txt >> config.yaml
-
 
 Activate environment::
 
@@ -56,7 +55,6 @@ lofreq faidx data/reference_index/JDV-reference.fa
 lofreq faidx data/reference_index/RV-reference.fa
 lofreq faidx data/reference_index/RD-reference.fa
 lofreq faidx data/reference_index/RDV-reference.fa
-
 
 Run Snakemake::
 
