@@ -13,19 +13,19 @@ Process Details:
 
 create config file::
 
-ls data/raw_fastq_files/ | cut -d "_" -f 1 | uniq > names.txt
+	ls data/raw_fastq_files/ | cut -d "_" -f 1 | uniq > names.txt
 
-while read p; do
-  ls data/raw_fastq_files/"$p"*R1*.gz | xargs cat > data/fastq_files/"$p"_R1.fastq.gz
-  ls data/raw_fastq_files/"$p"*R2*.gz | xargs cat > data/fastq_files/"$p"_R2.fastq.gz
-done <names.txt
+	while read p; do
+	  ls data/raw_fastq_files/"$p"*R1*.gz | xargs cat > data/fastq_files/"$p"_R1.fastq.gz
+	  ls data/raw_fastq_files/"$p"*R2*.gz | xargs cat > data/fastq_files/"$p"_R2.fastq.gz
+	done <names.txt
 
-echo samples: > config.yaml
-awk '{ print "    " $0 ": data/fastq_files/" $0 "_R1.fastq.gz" }' < names.txt >> config.yaml
+	echo samples: > config.yaml
+	awk '{ print "    " $0 ": data/fastq_files/" $0 "_R1.fastq.gz" }' < names.txt >> config.yaml
 
 Activate environment::
 
-    conda activate viral_escape
+	conda activate viral_escape
 
 Install CondonCaller (if not already installed)::
 
