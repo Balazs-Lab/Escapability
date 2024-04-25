@@ -9,7 +9,7 @@ Additionally, make sure the computer environment have been created before proces
 
 Process Details:
 
-create config file::
+Create config file::
   
   ls data/raw_fastq_files/ | cut -d "_" -f 1 | uniq > names.txt
 
@@ -17,7 +17,7 @@ create config file::
     ls data/raw_fastq_files/"$p"*R1*.gz | xargs cat > data/fastq_files/"$p"_R1.fastq.gz
     ls data/raw_fastq_files/"$p"*R2*.gz | xargs cat > data/fastq_files/"$p"_R2.fastq.gz
   done <names.txt
-
+  
   echo samples: > config.yaml
   awk '{ print "    " $0 ": data/fastq_files/" $0 "_R1.fastq.gz" }' < names.txt >> config.yaml
   
