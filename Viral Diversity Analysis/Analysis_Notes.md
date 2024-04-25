@@ -27,9 +27,9 @@ Activate environment::
     conda activate ampseq
 
 Make sure to build reference indexes:
-
-bowtie2-build data/reference_index/REJOc-reference.fa data/reference_index/REJOc-reference.fa
-bowtie2-build data/reference_index/JRCSF-reference.fa data/reference_index/JRCSF-reference.fa
+  
+  bowtie2-build data/reference_index/REJOc-reference.fa data/reference_index/REJOc-reference.fa
+  bowtie2-build data/reference_index/JRCSF-reference.fa data/reference_index/JRCSF-reference.fa
 
 
 
