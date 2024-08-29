@@ -29,7 +29,6 @@ Activate environment::
 
 Install CondonCaller (if not already installed)::
 
-	 cd /Users/anitido/PycharmProjects  
 	 python -m pip install -e CodonCaller
 
 Make sure to build reference indexes::
@@ -39,24 +38,10 @@ Make sure to build reference indexes::
 	bowtie2-build data/reference_index/REJOc-reference.fa data/reference_index/REJOc.fa
 	bowtie2-build data/reference_index/JRCSF-reference.fa data/reference_index/JRCSF.fa
 	
-	bowtie2-build data/reference_index/JD-reference.fa data/reference_index/JD-reference.fa
-	bowtie2-build data/reference_index/JDV-reference.fa data/reference_index/JDV-reference.fa
-	bowtie2-build data/reference_index/JV-reference.fa data/reference_index/JV-reference.fa
-	
-	bowtie2-build data/reference_index/RD-reference.fa data/reference_index/RD-reference.fa
-	bowtie2-build data/reference_index/RDV-reference.fa data/reference_index/RDV-reference.fa
-	bowtie2-build data/reference_index/RV-reference.fa data/reference_index/RV-reference.fa
-	
 	lofreq faidx data/reference_index/JRCSF-reference.fa
 	lofreq faidx data/reference_index/REJOc-reference.fa
-	lofreq faidx data/reference_index/JV-reference.fa
-	lofreq faidx data/reference_index/JD-reference.fa
-	lofreq faidx data/reference_index/JDV-reference.fa
-	lofreq faidx data/reference_index/RV-reference.fa
-	lofreq faidx data/reference_index/RD-reference.fa
-	lofreq faidx data/reference_index/RDV-reference.fa
 
 Run Snakemake::
 
-    snakemake --cores 8
+    snakemake --cores 2
 
