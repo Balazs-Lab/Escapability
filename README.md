@@ -12,7 +12,6 @@ The details about how to run each pipeline can be found in their respective dire
 Both pipelines contain an environment.yml file documenting the specific file dependencies. This software was developed and run on a MacOS system; however, the pipeline can be run on any standard machine that can run Python and [Conda](https://conda.io/).
  
 [Viral Escape Pipeline Requirements](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Analysis/environment.yml)
-
 [Viral Diversity Pipeline Requirements](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Analysis/environment.yml)  
  
 
