@@ -35,13 +35,16 @@ The typical installation time for this software on a conventional computer is le
 
 ## Demo / Instructions for use
 
-A full demo on how to to run each pipeline can be found in the README.md file of each pipeline directory. 
+A full demo on how to to run each pipeline can be found in the README.md file of each pipeline directory.
+
+[Viral Escape Pipeline Demo](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Analysis/README.md)
 
 Currently, both pipelines are populated with example datasets that have been fully run on the pipeline, demonstrating the input and output files of the pipeline. 
 
 Both pipelines use the [snakemake](https://snakemake.readthedocs.io) pipeline system to process the data, such that the structure and code of the pipeline live in each pipeline's respective snakemake file:
 
 [Viral Escape Pipeline](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Analysis/Snakefile)
+
 [Viral Diversity Pipeline](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Analysis/Snakefile)  
  
 
