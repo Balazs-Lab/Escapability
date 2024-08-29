@@ -1,10 +1,12 @@
 # HIV broadly neutralizing antibody escapability drives the therapeutic efficacy of vectored immunotherapy
+## Pipelines and Data
 
 This repository contains the following:
-* Code used for the analysis of viral escape from antibodies 
-* Interactive viral escape data tables for each sample set, these can be used to explore the frequency of mutations at every site
-* Code used for analysis of viral diversity prior to treatment with antibodies 
+* Viral Escape Analysis - pipeline and code used for the analysis of viral escape from antibodies, this was the software used to identify the primary anitbody escape mutations 
+* Viral Escape Data - viral escape Excel data tables for each sample set, these can be used to explore the frequency of mutations at every site
+* Viral Diversity Analysis - pipeline and code used for analysis of viral diversity prior to treatment with antibodies 
 
+# Viral Escape Analysis
 
 ## System Requirements
 The details about how to run the escapability pipeline can be found in the Viral Escape Analysis Directory in the Analysis_Notes.md file. The software required to run the escapability pipeline can be installed using conda and manually installing CondonCaller software using Python -m pip. If you clone this directory, there is a copy of CodonCaller included, which cna be used on the demo or provided data. While this software was developed and run on a MacOS system, the pipeline can be run on any standard machine that can run Python and conda. 
@@ -46,3 +48,7 @@ A full demo to run the pipeline can be found in the Viral Escape Analysis Direct
 Specifying the number of cores will allow the processes to run in parallel. Total run time will depend on the number of samples, but a typical sample will finish the processing in less than an hour on a normal desktop computer. 
 
 The expected output from the viral escape pipeline is a .csv file calling the frequency of each mutation in a per mouse base that can be found in the Viral Escape Data directory. These files can later be merged together, generating a summary file with all data.
+
+# Viral Escape Data
+
+# Viral Diversity Analysis
