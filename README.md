@@ -34,14 +34,20 @@ The typical installation time for this software on a conventional computer is le
 
 ## Demo / Instructions for use
 
-A full demo to run the pipeline can be found in the Viral Escape Analysis Directory in the Analysis_Notes.md file, with the details of the pipeline found in the Snakefile. Once the conda environment and CondoCaller software are installed, the pipeline can be run using the snakemake command:
+A full demo on how to to run each pipeline can be found in the README.md file of each pipeline directory. 
 
-    snakemake --cores 2 
+Currently, both pipelines are populated with example datasets that have been fully run on the pipeline, demonstrating the input and output files of the pipeline. 
+
+Both pipelines use the [snakemake](https://snakemake.readthedocs.io) pipeline system to process the data, such that the structure and code of the pipeline live in each pipeline's respective snakemake file:
+
+[Viral Escape Pipeline](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Analysis/Snakefile)
+[Viral Diversity Pipeline](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Analysis/Snakefile)  
+ 
 
 Specifying the number of cores will allow the processes to run in parallel. Total run time will depend on the number of samples, but a typical sample will finish the processing in less than an hour on a normal desktop computer. 
 
 The expected output from the viral escape pipeline is a .csv file calling the frequency of each mutation in a per mouse base that can be found in the Viral Escape Data directory. These files can later be merged together, generating a summary file with all data.
 
-# Viral Escape Data
+## Pipeline Data
 
-# Viral Diversity Analysis
+The pooled and processed [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) that is used in the paper can be downloaded for additional analysis. Once the excel file is downloaded and opened, move to the Mutation Dashboard to directly interact with the data. Users can select any position across the HIV envelope to view the percent of amino acid locations which have a change relative to wild type and of those reads with a amino acid different than the wild type sequence, the distribution of the non-wild type amino acids. 
