@@ -2,7 +2,7 @@ Viral Escape Mutant Identification Data Pipeline  -
 ================================================
 
 ## System Requirements
-The details about how to run the escapability pipeline can be found in the Viral Escape Analysis Directory in the Analysis_Notes.md file. The software required to run the escapability pipeline can be installed using conda and manually installing CondonCaller software using Python -m pip. If you clone this directory, there is a copy of CodonCaller included, which can be used on the demo or provided data. While this software was developed and run on a MacOS system, the pipeline can be run on any standard machine that can run Python and conda. 
+The software required to run the escapability pipeline can be installed using conda and manually installing CondonCaller software using Python -m pip. If you clone this directory, there is a copy of CodonCaller included, which can be used on the demo or provided data. While this software was developed and run on a MacOS system, the pipeline can be run on any standard machine that can run Python and conda. 
 
 ## Demo
 
