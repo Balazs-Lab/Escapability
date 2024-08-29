@@ -32,7 +32,6 @@ Make sure to build reference indexes:
   bowtie2-build data/reference_index/JRCSF-reference.fa data/reference_index/JRCSF-reference.fa
 
 
-
 Run Snakemake::
 
     snakemake --cores 8

@@ -2,13 +2,18 @@
 ## Pipelines and Data
 
 This repository contains the following:
-* Viral Escape Analysis - pipeline and code used for the analysis of viral escape from antibodies, this was the software used to identify the primary anitbody escape mutations 
+* Viral Escape Analysis - pipeline and code used for the analysis of viral escape from antibodies, this was the software used to identify the primary antibody escape mutations 
 * Viral Escape Data - viral escape Excel data tables for each sample set, these can be used to explore the frequency of mutations at every site
 * Viral Diversity Analysis - pipeline and code used for analysis of viral diversity prior to treatment with antibodies 
 
 # Viral Escape Analysis
 
 ## System Requirements
+The details about how to run each pipeline can be found in their respective directories. 
+Both pipelines contain an environment.yml file documenting the specific file dependencies.
+(Viral Escape Pipeline Requirements)[https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Analysis/environment.yml]
+(Viral Diversity Pipeline Requirements)  
+ 
 The details about how to run the escapability pipeline can be found in the Viral Escape Analysis Directory in the Analysis_Notes.md file. The software required to run the escapability pipeline can be installed using conda and manually installing CondonCaller software using Python -m pip. If you clone this directory, there is a copy of CodonCaller included, which cna be used on the demo or provided data. While this software was developed and run on a MacOS system, the pipeline can be run on any standard machine that can run Python and conda. 
 
 The software required to run the escapability pipeline can be found in the environment file:

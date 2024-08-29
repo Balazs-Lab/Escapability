@@ -27,12 +27,10 @@ rule filter_sequences:
         " --trim_tail1 {params.tm} --trim_tail2 {params.tm} --qualified_quality_phred {params.qs} "
         " --unqualified_percent_limit {params.ps} --html {log}"
 
-### UPDATE ### 
 def get_reference(wildcards):
     reference = config["samples"][wildcards.sample].split("-")[-1].split('_')[0]
     return "data/reference_index/" + reference + "-reference.fa",
 
-### UPDATE ### 
 def get_bed(wildcards):
     reference = config["samples"][wildcards.sample].split("-")[-1].split('_')[0]
     return "data/bed_file/" + reference + ".bed",
@@ -69,7 +67,6 @@ rule samtools_index:
     shell:
         "samtools index {input}"
 
-### UPDATE ### 
 def get_reference2(wildcards):
     reference = config["samples"][wildcards.sample].split("-")[-1].split('_')[0]
     return str(reference) + "-reference"
@@ -114,10 +111,3 @@ rule merge_diversity:
         "env_var_data.csv"
     script:
         "scripts/merge_diversity.py"
-
-### Add new rule
-### merge diversity data
-### add meta data
-
-
-#compare VCF files
