@@ -2,11 +2,7 @@ configfile: "config.yaml"
 
 rule all:
     input:
-        #expand("data/calls/{sample}.vcf", sample=config["samples"])
-        #expand("data/var_freq/{sample}.csv", sample=config["samples"])
-        #expand("data/sorted_reads/{sample}.bam.bai", sample=config["samples"])
-        #expand("data/coverage/{sample}.csv", sample=config["samples"])
-        expand("data/haplotypes/{sample}.csv", sample=config["samples"]),
+        #expand("data/sorted_reads/{sample}.bam.bai", sample=config["samples"]),
         "data/var_freq_merged.csv",
         "data/coverage_merged.csv"
         
@@ -96,7 +92,8 @@ rule call:
     input:
         fa=get_reference,
         bam="data/sorted_reads/{sample}.bam",
-        bed=get_bed
+        bed=get_bed,
+        bai="data/sorted_reads/{sample}.bam.bai"
     params:
         r=40,
         b=110,

@@ -1,0 +1,14 @@
+LICENSE
+README.md
+setup.py
+CodonCaller/__init__.py
+CodonCaller/codon_call.py
+CodonCaller/haplotype.py
+CodonCaller/variant_caller.py
+CodonCaller.egg-info/PKG-INFO
+CodonCaller.egg-info/SOURCES.txt
+CodonCaller.egg-info/dependency_links.txt
+CodonCaller.egg-info/top_level.txt
+test/test_functions.py
+test/test_haplotype.py
+test/test_system.py

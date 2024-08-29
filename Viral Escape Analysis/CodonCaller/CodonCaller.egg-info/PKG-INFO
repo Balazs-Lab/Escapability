@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: CodonCaller
+Version: 1.0.0
+Summary: Codon Based Variant Caller for HIV Deep Sequencing Data
+Home-page: https://github.com/adamnitido/CodonCaller
+Author: Adam Nitido
+Author-email: adamnitido@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+License-File: LICENSE
+
+# CodonCaller
+Package for codon aware variant calling in HIV Deep Sequencing Data
