@@ -1,0 +1,68 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	2	call_freq
+	1	diversity
+	1	merge_diversity
+	5
+Select jobs to execute...
+
+[Thu Aug 29 16:38:23 2024]
+rule call_freq:
+    input: data/calls/CD00-m000-00-JRCSF.vcf, data/reference_index/JRCSF-reference.fa
+    output: data/var_freq/CD00-m000-00-JRCSF.csv
+    jobid: 11
+    wildcards: sample=CD00-m000-00-JRCSF
+
+[Thu Aug 29 16:38:38 2024]
+Finished job 11.
+1 of 5 steps (20%) done
+Select jobs to execute...
+
+[Thu Aug 29 16:38:38 2024]
+rule call_freq:
+    input: data/calls/CD00-m000-00-REJOc.vcf, data/reference_index/REJOc-reference.fa
+    output: data/var_freq/CD00-m000-00-REJOc.csv
+    jobid: 12
+    wildcards: sample=CD00-m000-00-REJOc
+
+[Thu Aug 29 16:38:39 2024]
+Finished job 12.
+2 of 5 steps (40%) done
+Select jobs to execute...
+
+[Thu Aug 29 16:38:39 2024]
+rule diversity:
+    input: data/var_freq/CD00-m000-00-JRCSF.csv, data/var_freq/CD00-m000-00-REJOc.csv
+    output: data/diversity.csv, data/matrix.csv
+    jobid: 13
+
+[Thu Aug 29 16:38:39 2024]
+Finished job 13.
+3 of 5 steps (60%) done
+Select jobs to execute...
+
+[Thu Aug 29 16:38:39 2024]
+rule merge_diversity:
+    input: data/var_freq/CD00-m000-00-JRCSF.csv, data/var_freq/CD00-m000-00-REJOc.csv
+    output: env_var_data.csv
+    jobid: 14
+
+[Thu Aug 29 16:38:40 2024]
+Finished job 14.
+4 of 5 steps (80%) done
+Select jobs to execute...
+
+[Thu Aug 29 16:38:40 2024]
+localrule all:
+    input: data/calls/CD00-m000-00-JRCSF.vcf, data/calls/CD00-m000-00-REJOc.vcf, data/var_freq/CD00-m000-00-JRCSF.csv, data/var_freq/CD00-m000-00-REJOc.csv, data/diversity.csv, data/matrix.csv, env_var_data.csv
+    jobid: 0
+
+[Thu Aug 29 16:38:40 2024]
+Finished job 0.
+5 of 5 steps (100%) done
+Complete log: /Users/anitido/Documents/GitHub/Escapability/Viral Diversity Analysis/.snakemake/log/2024-08-29T163812.729067.snakemake.log

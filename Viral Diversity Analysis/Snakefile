@@ -2,8 +2,8 @@ configfile: "config.yaml"
 
 rule all:
     input:
-        #expand("data/calls/{sample}.vcf", sample=config["samples"])
-        #expand("data/var_freq/{sample}.csv", sample=config["samples"])
+        expand("data/calls/{sample}.vcf", sample=config["samples"]),
+        expand("data/var_freq/{sample}.csv", sample=config["samples"]),
         "data/diversity.csv",
         "data/matrix.csv",
         "env_var_data.csv"
@@ -82,7 +82,6 @@ rule lofreq:
     output:
         "data/calls/{sample}.vcf"
     shell:
-        #"lofreq faidx data/reference_sequence/HIV_REJOC_ENV_REF.fa "
         "lofreq call-parallel --pp-threads {params.p} -l {input.bed} -f {input.fa} -o {output} {input.bam} "
 
 rule call_freq:

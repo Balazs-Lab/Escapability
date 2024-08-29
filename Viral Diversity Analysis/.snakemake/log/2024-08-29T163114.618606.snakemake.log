@@ -1,0 +1,8 @@
+Building DAG of jobs...
+InputFunctionException in rule lofreq in file /Users/anitido/Documents/GitHub/Escapability/Viral Diversity Analysis/Snakefile, line 75:
+Error:
+  TypeError: 'NoneType' object is not subscriptable
+Wildcards:
+  sample=None
+Traceback:
+  File "/Users/anitido/Documents/GitHub/Escapability/Viral Diversity Analysis/Snakefile", line 31, in get_reference

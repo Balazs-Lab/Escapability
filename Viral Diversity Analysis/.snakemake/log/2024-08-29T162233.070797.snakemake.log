@@ -1,0 +1,8 @@
+Building DAG of jobs...
+InputFunctionException in rule call_freq in file /Users/anitido/Documents/GitHub/Escapability/Viral Diversity Analysis/Snakefile, line 88:
+Error:
+  TypeError: 'NoneType' object is not subscriptable
+Wildcards:
+  sample=None
+Traceback:
+  File "/Users/anitido/Documents/GitHub/Escapability/Viral Diversity Analysis/Snakefile", line 31, in get_reference

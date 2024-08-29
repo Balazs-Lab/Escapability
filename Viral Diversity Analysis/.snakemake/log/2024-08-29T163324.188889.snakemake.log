@@ -1,0 +1,38 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count
+---------------  -------
+all                    1
+call_freq              2
+diversity              1
+merge_diversity        1
+total                  5
+
+Select jobs to execute...
+
+[Thu Aug 29 16:33:24 2024]
+rule call_freq:
+    input: data/calls/CD00-m000-00-JRCSF.vcf, data/reference_index/JRCSF-reference.fa
+    output: data/var_freq/CD00-m000-00-JRCSF.csv
+    jobid: 11
+    reason: Missing output files: data/var_freq/CD00-m000-00-JRCSF.csv
+    wildcards: sample=CD00-m000-00-JRCSF
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 16:33:25 2024]
+Error in rule call_freq:
+    jobid: 11
+    input: data/calls/CD00-m000-00-JRCSF.vcf, data/reference_index/JRCSF-reference.fa
+    output: data/var_freq/CD00-m000-00-JRCSF.csv
+
+RuleException:
+CalledProcessError in file /Users/anitido/Documents/GitHub/Escapability/Viral Diversity Analysis/Snakefile, line 94:
+Command 'set -euo pipefail;  /Users/anitido/miniforge3/envs/viral_escape/bin/python3.10 '/Users/anitido/Documents/GitHub/Escapability/Viral Diversity Analysis/.snakemake/scripts/tmpvz9vsf2w.vcf_to_df.py'' returned non-zero exit status 1.
+  File "/Users/anitido/Documents/GitHub/Escapability/Viral Diversity Analysis/Snakefile", line 94, in __rule_call_freq
+  File "/Users/anitido/miniforge3/envs/viral_escape/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-08-29T163324.188889.snakemake.log

@@ -1,0 +1,22 @@
+##fileformat=VCFv4.0
+##fileDate=20240829
+##source=lofreq call -f data/reference_index/JRCSF-reference.fa --no-default-filter -r JRCSF:44-1326 -o /var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T/lofreq2_call_parallelh0ffktyu/0.vcf.gz data/sorted_reads/CD00-m000-00-JRCSF.bam 
+##reference=data/reference_index/JRCSF-reference.fa
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw Depth">
+##INFO=<ID=AF,Number=1,Type=Float,Description="Allele Frequency">
+##INFO=<ID=SB,Number=1,Type=Integer,Description="Phred-scaled strand bias at this position">
+##INFO=<ID=DP4,Number=4,Type=Integer,Description="Counts for ref-forward bases, ref-reverse, alt-forward and alt-reverse bases">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=CONSVAR,Number=0,Type=Flag,Description="Indicates that the variant is a consensus variant (as opposed to a low frequency variant).">
+##INFO=<ID=HRUN,Number=1,Type=Integer,Description="Homopolymer length to the right of report indel position">
+##FILTER=<ID=min_snvqual_50,Description="Minimum SNV Quality (Phred) 50">
+##FILTER=<ID=min_indelqual_20,Description="Minimum Indel Quality (Phred) 20">
+##FILTER=<ID=min_dp_10,Description="Minimum Coverage 10">
+##FILTER=<ID=sb_fdr,Description="Strand-Bias Multiple Testing Correction: fdr corr. pvalue > 0.001000">
+##FILTER=<ID=min_snvqual_53,Description="Minimum SNV Quality (Phred) 53">
+##FILTER=<ID=min_indelqual_20,Description="Minimum Indel Quality (Phred) 20">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+JRCSF	515	.	T	C	80	PASS	DP=282;AF=0.024823;SB=0;DP4=128,147,3,4
+JRCSF	810	.	T	C	254	PASS	DP=401;AF=0.042394;SB=3;DP4=187,197,10,7
+JRCSF	1257	.	G	A	217	PASS	DP=291;AF=0.048110;SB=1;DP4=136,141,6,8
+JRCSF	2127	.	T	C	194	PASS	DP=242;AF=0.061983;SB=2;DP4=127,100,10,5
