@@ -3,17 +3,17 @@
 ## Pipelines and Data
 
 This repository contains the following:
-* [Viral Escape Pipeline](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Analysis/) - pipeline and code used for the analysis of viral escape from antibodies, this was the software used to identify the primary antibody escape mutations 
+* [Viral Escape Pipeline](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/) - pipeline and code used for the analysis of viral escape from antibodies, this was the software used to identify the primary antibody escape mutations 
 * [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) - viral escape Excel data tables for each sample set, these can be used to explore the frequency of amino acid at every site
-* [Viral Diversity Pipeline](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Diversity%20Analysis) - pipeline and code used for analysis of viral diversity prior to treatment with antibodies 
+* [Viral Diversity Pipeline](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Diversity%20Pipeline) - pipeline and code used for analysis of viral diversity prior to treatment with antibodies 
 
 ## System Requirements
 The details about how to run each pipeline can be found in their respective directories. 
 Both pipelines contain an environment.yml file documenting the specific software dependencies. This software was developed and run on a MacOS system; however, the pipeline can be run on any standard machine that can run Python and [Conda](https://conda.io/).
  
-[Viral Escape Pipeline Requirements](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Analysis/environment.yml)
+[Viral Escape Pipeline Requirements](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/environment.yml)
 
-[Viral Diversity Pipeline Requirements](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Analysis/environment.yml)  
+[Viral Diversity Pipeline Requirements](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Pipeline/environment.yml)  
  
 
 ## Installation Guide
@@ -37,17 +37,17 @@ The typical installation time for this software on a conventional computer is le
 
 A full demo on how to to run each pipeline can be found in the README.md file of each pipeline directory.
 
-[Viral Escape Pipeline Demo](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Analysis/README.md)
+[Viral Escape Pipeline Demo](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/README.md)
 
-[Viral Diversity Pipeline Demo](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Analysis/README.md)
+[Viral Diversity Pipeline Demo](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Pipeline/README.md)
 
 Currently, both pipelines are populated with example datasets that have been fully run on the pipeline, demonstrating the input and output files of the pipeline. 
 
 Both pipelines use the [snakemake](https://snakemake.readthedocs.io) pipeline system to process the data, such that the structure and code of the pipeline live in each pipeline's respective snakemake file:
 
-[Viral Escape Pipeline](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Analysis/Snakefile)
+[Viral Escape Pipeline](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/Snakefile)
 
-[Viral Diversity Pipeline](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Analysis/Snakefile)  
+[Viral Diversity Pipeline](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Pipeline/Snakefile)  
  
 
 Specifying the number of cores will allow the processes to run in parallel. Total run time will depend on the number of samples, but a typical sample will finish the processing in less than an hour on a normal desktop computer. 
