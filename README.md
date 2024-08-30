@@ -4,7 +4,7 @@
 
 This repository contains the following:
 * [Viral Escape Pipeline](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/) - pipeline and code used for the analysis of viral escape from antibodies, this was the software used to identify the primary antibody escape mutations 
-* [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) - viral escape Excel data tables for each sample set, these can be used to explore the frequency of amino acid at every site
+* [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) - viral escape pipeline output data Excel tables for each sample set, these can be used to explore the frequency of amino acid at every site
 * [Viral Diversity Pipeline](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Diversity%20Pipeline) - pipeline and code used for analysis of viral diversity prior to treatment with antibodies 
 
 ## System Requirements
@@ -56,4 +56,7 @@ The expected output from the viral escape pipeline is a .csv file calling the fr
 
 ## Pipeline Data
 
-The pooled and processed [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) that is used in the paper can be downloaded for additional analysis. Once the excel file is downloaded and opened, move to the Mutation Dashboard to directly interact with the data. Users can select any position across the HIV envelope to view the percent of amino acid locations which have a change relative to wild type and of those reads with a amino acid different than the wild type sequence, the distribution of the non-wild type amino acids. 
+The pooled and processed [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) that was used in the paper can be downloaded for additional analysis. Once the Excel file is downloaded and opened, move to the Mutation Dashboard tab to directly interact with the data. Users can select any position across the HIV envelope to view the following on a per codon site basis:
+* Virus strain specific amino acid position alignment with HXB2
+* Percent of total reads with an amino acid change relative to wild type (the reference sequence)
+* Breakdown of the various types of amino acid changes 
