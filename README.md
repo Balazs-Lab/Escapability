@@ -24,7 +24,7 @@ Once [Conda](https://conda.io) is installed, either pipeline environment can be 
 
     conda env create -f environment.yml
 
-For the Escape Pipeline, once the initial environment is set up, the CodonCaller software will need to be installed. Activate the conda environment and install the CodonCaller software:
+For the Escape Pipeline, once the initial environment is set up, the CodonCaller software will need to be installed. Activate the Conda environment and install the CodonCaller software:
 
     conda activate viral_escape
     cd /path/to/CodonCaller
