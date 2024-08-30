@@ -4,12 +4,12 @@
 
 This repository contains the following:
 * [Viral Escape Analysis](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Analysis/) - pipeline and code used for the analysis of viral escape from antibodies, this was the software used to identify the primary antibody escape mutations 
-* [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) - viral escape Excel data tables for each sample set, these can be used to explore the frequency of mutations at every site
+* [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) - viral escape Excel data tables for each sample set, these can be used to explore the frequency of amino acid at every site
 * [Viral Diversity Analysis](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Diversity%20Analysis) - pipeline and code used for analysis of viral diversity prior to treatment with antibodies 
 
 ## System Requirements
 The details about how to run each pipeline can be found in their respective directories. 
-Both pipelines contain an environment.yml file documenting the specific file dependencies. This software was developed and run on a MacOS system; however, the pipeline can be run on any standard machine that can run Python and [Conda](https://conda.io/).
+Both pipelines contain an environment.yml file documenting the specific software dependencies. This software was developed and run on a MacOS system; however, the pipeline can be run on any standard machine that can run Python and [Conda](https://conda.io/).
  
 [Viral Escape Pipeline Requirements](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Analysis/environment.yml)
 
