@@ -54,7 +54,7 @@ Specifying the number of cores will allow the processes to run in parallel. Tota
 
 The expected output from the viral escape pipeline is a .csv file calling the frequency of each mutation in a per mouse base that can be found in the Viral Escape Data directory. These files can later be merged together, generating a summary file with all data.
 
-## Pipeline Data
+## Viral Escape Pipeline Output Data
 
 The pooled and processed [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) that was used in the paper can be downloaded for additional analysis. Once the Excel file is downloaded and opened, move to the Mutation Dashboard tab to directly interact with the data. Users can select any position across the HIV envelope to view the following on a per codon site basis:
 * Virus strain specific amino acid position alignment with HXB2
