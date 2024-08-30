@@ -1,0 +1,8 @@
+Building DAG of jobs...
+MissingInputException in rule all in file /Users/anitido/Documents/GitHub/Escapability/Viral Escape Analysis/Snakefile, line 3:
+Missing input files for rule all:
+    affected files:
+        data/calls/CD00-m000-00-REJOc.vcf
+        data/var_freq/CD00-m000-00-JRCSF.csv
+        data/calls/CD00-m000-00-JRCSF.vcf
+        data/var_freq/CD00-m000-00-REJOc.csv

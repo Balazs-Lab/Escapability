@@ -1,0 +1,64 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job stats:
+job               count
+--------------  -------
+all                   1
+call                  1
+merge_coverage        1
+merge_freq            1
+total                 4
+
+Select jobs to execute...
+
+[Thu Aug 29 12:36:34 2024]
+rule call:
+    input: data/reference_index/REJOc-reference.fa, data/sorted_reads/CD00-m000-00-REJOc.bam, data/bed_file/REJOc.bed
+    output: data/calls/CD00-m000-00-REJOc.csv, data/coverage/CD00-m000-00-REJOc.csv
+    jobid: 11
+    reason: Missing output files: data/calls/CD00-m000-00-REJOc.csv, data/coverage/CD00-m000-00-REJOc.csv
+    wildcards: sample=CD00-m000-00-REJOc
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:36:35 2024]
+Finished job 11.
+1 of 4 steps (25%) done
+Select jobs to execute...
+
+[Thu Aug 29 12:36:35 2024]
+rule merge_coverage:
+    input: data/coverage/CD00-m000-00-JRCSF.csv, data/coverage/CD00-m000-00-REJOc.csv
+    output: data/coverage_merged.csv
+    jobid: 12
+    reason: Missing output files: data/coverage_merged.csv; Input files updated by another job: data/coverage/CD00-m000-00-REJOc.csv
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:36:35 2024]
+rule merge_freq:
+    input: data/calls/CD00-m000-00-JRCSF.csv, data/calls/CD00-m000-00-REJOc.csv
+    output: data/var_freq_merged.csv
+    jobid: 9
+    reason: Missing output files: data/var_freq_merged.csv; Input files updated by another job: data/calls/CD00-m000-00-REJOc.csv
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:36:36 2024]
+Finished job 12.
+2 of 4 steps (50%) done
+[Thu Aug 29 12:36:36 2024]
+Finished job 9.
+3 of 4 steps (75%) done
+Select jobs to execute...
+
+[Thu Aug 29 12:36:36 2024]
+localrule all:
+    input: data/sorted_reads/CD00-m000-00-JRCSF.bam.bai, data/sorted_reads/CD00-m000-00-REJOc.bam.bai, data/var_freq_merged.csv, data/coverage_merged.csv
+    jobid: 0
+    reason: Input files updated by another job: data/var_freq_merged.csv, data/coverage_merged.csv
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:36:36 2024]
+Finished job 0.
+4 of 4 steps (100%) done
+Complete log: .snakemake/log/2024-08-29T123634.294368.snakemake.log

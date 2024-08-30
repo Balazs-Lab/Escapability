@@ -1,0 +1,131 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                 count
+----------------  -------
+all                     1
+bowtie2_map             2
+call                    2
+filter_sequences        2
+haplotype               2
+merge_coverage          1
+merge_freq              1
+samtools_sort           2
+total                  13
+
+Select jobs to execute...
+Failed to solve scheduling problem with ILP solver. Falling back to greedy solver. Run Snakemake with --verbose to see the full solver output for debugging the problem.
+
+[Thu Aug 29 12:23:28 2024]
+rule filter_sequences:
+    input: data/fastq_files/CD00-m000-00-JRCSF_R1.fastq.gz, data/fastq_files/CD00-m000-00-JRCSF_R2.fastq.gz
+    output: data/fastq_filtered/CD00-m000-00-JRCSF_R1.fastq.gz, data/fastq_filtered/CD00-m000-00-JRCSF_R2.fastq.gz
+    log: logs/fastq/CD00-m000-00-JRCSF.html
+    jobid: 4
+    reason: Missing output files: data/fastq_filtered/CD00-m000-00-JRCSF_R2.fastq.gz, data/fastq_filtered/CD00-m000-00-JRCSF_R1.fastq.gz
+    wildcards: sample=CD00-m000-00-JRCSF
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:23:44 2024]
+Finished job 4.
+1 of 13 steps (8%) done
+Select jobs to execute...
+
+[Thu Aug 29 12:23:46 2024]
+rule bowtie2_map:
+    input: data/reference_index/JRCSF-reference.fa, data/fastq_filtered/CD00-m000-00-JRCSF_R1.fastq.gz, data/fastq_filtered/CD00-m000-00-JRCSF_R2.fastq.gz
+    output: data/mapped_reads/CD00-m000-00-JRCSF.bam
+    log: logs/bowtie2/CD00-m000-00-JRCSF.log
+    jobid: 3
+    reason: Missing output files: data/mapped_reads/CD00-m000-00-JRCSF.bam; Input files updated by another job: data/fastq_filtered/CD00-m000-00-JRCSF_R2.fastq.gz, data/fastq_filtered/CD00-m000-00-JRCSF_R1.fastq.gz
+    wildcards: sample=CD00-m000-00-JRCSF
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:23:49 2024]
+Finished job 3.
+2 of 13 steps (15%) done
+Select jobs to execute...
+
+[Thu Aug 29 12:23:49 2024]
+rule filter_sequences:
+    input: data/fastq_files/CD00-m000-00-REJOc_R1.fastq.gz, data/fastq_files/CD00-m000-00-REJOc_R2.fastq.gz
+    output: data/fastq_filtered/CD00-m000-00-REJOc_R1.fastq.gz, data/fastq_filtered/CD00-m000-00-REJOc_R2.fastq.gz
+    log: logs/fastq/CD00-m000-00-REJOc.html
+    jobid: 8
+    reason: Missing output files: data/fastq_filtered/CD00-m000-00-REJOc_R2.fastq.gz, data/fastq_filtered/CD00-m000-00-REJOc_R1.fastq.gz
+    wildcards: sample=CD00-m000-00-REJOc
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:23:49 2024]
+Finished job 8.
+3 of 13 steps (23%) done
+Select jobs to execute...
+
+[Thu Aug 29 12:23:49 2024]
+rule bowtie2_map:
+    input: data/reference_index/REJOc-reference.fa, data/fastq_filtered/CD00-m000-00-REJOc_R1.fastq.gz, data/fastq_filtered/CD00-m000-00-REJOc_R2.fastq.gz
+    output: data/mapped_reads/CD00-m000-00-REJOc.bam
+    log: logs/bowtie2/CD00-m000-00-REJOc.log
+    jobid: 7
+    reason: Missing output files: data/mapped_reads/CD00-m000-00-REJOc.bam; Input files updated by another job: data/fastq_filtered/CD00-m000-00-REJOc_R2.fastq.gz, data/fastq_filtered/CD00-m000-00-REJOc_R1.fastq.gz
+    wildcards: sample=CD00-m000-00-REJOc
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:23:50 2024]
+Finished job 7.
+4 of 13 steps (31%) done
+Select jobs to execute...
+
+[Thu Aug 29 12:23:50 2024]
+rule samtools_sort:
+    input: data/mapped_reads/CD00-m000-00-REJOc.bam
+    output: data/sorted_reads/CD00-m000-00-REJOc.bam
+    jobid: 6
+    reason: Missing output files: data/sorted_reads/CD00-m000-00-REJOc.bam; Input files updated by another job: data/mapped_reads/CD00-m000-00-REJOc.bam
+    wildcards: sample=CD00-m000-00-REJOc
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:23:50 2024]
+Finished job 6.
+5 of 13 steps (38%) done
+Select jobs to execute...
+
+[Thu Aug 29 12:23:50 2024]
+rule samtools_sort:
+    input: data/mapped_reads/CD00-m000-00-JRCSF.bam
+    output: data/sorted_reads/CD00-m000-00-JRCSF.bam
+    jobid: 2
+    reason: Missing output files: data/sorted_reads/CD00-m000-00-JRCSF.bam; Input files updated by another job: data/mapped_reads/CD00-m000-00-JRCSF.bam
+    wildcards: sample=CD00-m000-00-JRCSF
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:23:50 2024]
+Finished job 2.
+6 of 13 steps (46%) done
+Select jobs to execute...
+
+[Thu Aug 29 12:23:50 2024]
+rule haplotype:
+    input: data/reference_index/JRCSF-reference.fa, data/sorted_reads/CD00-m000-00-JRCSF.bam, data/bed_file/JRCSF_haplotypes.bed
+    output: data/haplotypes/CD00-m000-00-JRCSF.csv
+    jobid: 1
+    reason: Updated input files: data/bed_file/JRCSF_haplotypes.bed; Input files updated by another job: data/sorted_reads/CD00-m000-00-JRCSF.bam
+    wildcards: sample=CD00-m000-00-JRCSF
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:23:55 2024]
+Error in rule haplotype:
+    jobid: 1
+    input: data/reference_index/JRCSF-reference.fa, data/sorted_reads/CD00-m000-00-JRCSF.bam, data/bed_file/JRCSF_haplotypes.bed
+    output: data/haplotypes/CD00-m000-00-JRCSF.csv
+
+RuleException:
+CalledProcessError in file /Users/anitido/Documents/GitHub/Escapability/Viral Escape Analysis/Snakefile, line 134:
+Command 'set -euo pipefail;  /Users/anitido/miniforge3/envs/viral_escape/bin/python3.10 '/Users/anitido/Documents/GitHub/Escapability/Viral Escape Analysis/.snakemake/scripts/tmpmliij9dh.haploptype.py'' returned non-zero exit status 1.
+  File "/Users/anitido/Documents/GitHub/Escapability/Viral Escape Analysis/Snakefile", line 134, in __rule_haplotype
+  File "/Users/anitido/miniforge3/envs/viral_escape/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-08-29T122327.673247.snakemake.log

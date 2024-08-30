@@ -1,0 +1,64 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job stats:
+job                 count
+----------------  -------
+all                     1
+bowtie2_map             2
+call                    2
+filter_sequences        2
+haplotype               2
+merge_coverage          1
+merge_freq              1
+samtools_sort           2
+total                  13
+
+Select jobs to execute...
+Failed to solve scheduling problem with ILP solver. Falling back to greedy solver. Run Snakemake with --verbose to see the full solver output for debugging the problem.
+
+[Thu Aug 29 12:23:07 2024]
+rule filter_sequences:
+    input: data/fastq_files/CD00-m000-00-JRCSF_R1.fastq.gz, data/fastq_files/CD00-m000-00-JRCSF_R2.fastq.gz
+    output: data/fastq_filtered/CD00-m000-00-JRCSF_R1.fastq.gz, data/fastq_filtered/CD00-m000-00-JRCSF_R2.fastq.gz
+    log: logs/fastq/CD00-m000-00-JRCSF.html
+    jobid: 4
+    reason: Missing output files: data/fastq_filtered/CD00-m000-00-JRCSF_R2.fastq.gz, data/fastq_filtered/CD00-m000-00-JRCSF_R1.fastq.gz
+    wildcards: sample=CD00-m000-00-JRCSF
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+
+[Thu Aug 29 12:23:07 2024]
+rule filter_sequences:
+    input: data/fastq_files/CD00-m000-00-REJOc_R1.fastq.gz, data/fastq_files/CD00-m000-00-REJOc_R2.fastq.gz
+    output: data/fastq_filtered/CD00-m000-00-REJOc_R1.fastq.gz, data/fastq_filtered/CD00-m000-00-REJOc_R2.fastq.gz
+    log: logs/fastq/CD00-m000-00-REJOc.html
+    jobid: 8
+    reason: Missing output files: data/fastq_filtered/CD00-m000-00-REJOc_R2.fastq.gz, data/fastq_filtered/CD00-m000-00-REJOc_R1.fastq.gz
+    wildcards: sample=CD00-m000-00-REJOc
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:23:07 2024]
+[Thu Aug 29 12:23:07 2024]
+Error in rule filter_sequences:
+    jobid: 4
+    input: data/fastq_files/CD00-m000-00-JRCSF_R1.fastq.gz, data/fastq_files/CD00-m000-00-JRCSF_R2.fastq.gz
+    output: data/fastq_filtered/CD00-m000-00-JRCSF_R1.fastq.gz, data/fastq_filtered/CD00-m000-00-JRCSF_R2.fastq.gz
+    log: logs/fastq/CD00-m000-00-JRCSF.html (check log file(s) for error details)
+    shell:
+        fastp --in1 data/fastq_files/CD00-m000-00-JRCSF_R1.fastq.gz --in2 data/fastq_files/CD00-m000-00-JRCSF_R2.fastq.gz --out1 data/fastq_filtered/CD00-m000-00-JRCSF_R1.fastq.gz --out2 data/fastq_filtered/CD00-m000-00-JRCSF_R2.fastq.gz  --trim_tail1 0 --trim_tail2 0 --qualified_quality_phred 25  --unqualified_percent_limit 20 --html logs/fastq/CD00-m000-00-JRCSF.html
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Error in rule filter_sequences:
+    jobid: 8
+    input: data/fastq_files/CD00-m000-00-REJOc_R1.fastq.gz, data/fastq_files/CD00-m000-00-REJOc_R2.fastq.gz
+    output: data/fastq_filtered/CD00-m000-00-REJOc_R1.fastq.gz, data/fastq_filtered/CD00-m000-00-REJOc_R2.fastq.gz
+    log: logs/fastq/CD00-m000-00-REJOc.html (check log file(s) for error details)
+    shell:
+        fastp --in1 data/fastq_files/CD00-m000-00-REJOc_R1.fastq.gz --in2 data/fastq_files/CD00-m000-00-REJOc_R2.fastq.gz --out1 data/fastq_filtered/CD00-m000-00-REJOc_R1.fastq.gz --out2 data/fastq_filtered/CD00-m000-00-REJOc_R2.fastq.gz  --trim_tail1 0 --trim_tail2 0 --qualified_quality_phred 25  --unqualified_percent_limit 20 --html logs/fastq/CD00-m000-00-REJOc.html
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-08-29T122253.097050.snakemake.log

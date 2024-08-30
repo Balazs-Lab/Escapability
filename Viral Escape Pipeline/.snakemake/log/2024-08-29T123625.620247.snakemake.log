@@ -1,0 +1,38 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job               count
+--------------  -------
+all                   1
+samtools_index        1
+total                 2
+
+Select jobs to execute...
+
+[Thu Aug 29 12:36:26 2024]
+rule samtools_index:
+    input: data/sorted_reads/CD00-m000-00-REJOc.bam
+    output: data/sorted_reads/CD00-m000-00-REJOc.bam.bai
+    jobid: 5
+    reason: Missing output files: data/sorted_reads/CD00-m000-00-REJOc.bam.bai
+    wildcards: sample=CD00-m000-00-REJOc
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:36:26 2024]
+Finished job 5.
+1 of 2 steps (50%) done
+Select jobs to execute...
+
+[Thu Aug 29 12:36:26 2024]
+localrule all:
+    input: data/sorted_reads/CD00-m000-00-JRCSF.bam.bai, data/sorted_reads/CD00-m000-00-REJOc.bam.bai
+    jobid: 0
+    reason: Input files updated by another job: data/sorted_reads/CD00-m000-00-REJOc.bam.bai
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:36:26 2024]
+Finished job 0.
+2 of 2 steps (100%) done
+Complete log: .snakemake/log/2024-08-29T123625.620247.snakemake.log

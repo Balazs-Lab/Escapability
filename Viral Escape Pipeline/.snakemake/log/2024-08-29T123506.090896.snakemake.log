@@ -1,0 +1,65 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job stats:
+job               count
+--------------  -------
+all                   1
+call                  2
+merge_coverage        1
+merge_freq            1
+samtools_index        2
+total                 7
+
+Select jobs to execute...
+
+[Thu Aug 29 12:35:06 2024]
+rule call:
+    input: data/reference_index/REJOc-reference.fa, data/sorted_reads/CD00-m000-00-REJOc.bam, data/bed_file/REJOc.bed
+    output: data/calls/CD00-m000-00-REJOc.csv, data/coverage/CD00-m000-00-REJOc.csv
+    jobid: 11
+    reason: Missing output files: data/calls/CD00-m000-00-REJOc.csv, data/coverage/CD00-m000-00-REJOc.csv
+    wildcards: sample=CD00-m000-00-REJOc
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:35:06 2024]
+rule samtools_index:
+    input: data/sorted_reads/CD00-m000-00-REJOc.bam
+    output: data/sorted_reads/CD00-m000-00-REJOc.bam.bai
+    jobid: 5
+    reason: Missing output files: data/sorted_reads/CD00-m000-00-REJOc.bam.bai
+    wildcards: sample=CD00-m000-00-REJOc
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:35:06 2024]
+Finished job 5.
+1 of 7 steps (14%) done
+Select jobs to execute...
+
+[Thu Aug 29 12:35:06 2024]
+rule call:
+    input: data/reference_index/JRCSF-reference.fa, data/sorted_reads/CD00-m000-00-JRCSF.bam, data/bed_file/JRCSF.bed
+    output: data/calls/CD00-m000-00-JRCSF.csv, data/coverage/CD00-m000-00-JRCSF.csv
+    jobid: 10
+    reason: Missing output files: data/coverage/CD00-m000-00-JRCSF.csv, data/calls/CD00-m000-00-JRCSF.csv
+    wildcards: sample=CD00-m000-00-JRCSF
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:35:07 2024]
+Error in rule call:
+    jobid: 10
+    input: data/reference_index/JRCSF-reference.fa, data/sorted_reads/CD00-m000-00-JRCSF.bam, data/bed_file/JRCSF.bed
+    output: data/calls/CD00-m000-00-JRCSF.csv, data/coverage/CD00-m000-00-JRCSF.csv
+
+RuleException:
+CalledProcessError in file /Users/anitido/Documents/GitHub/Escapability/Viral Escape Analysis/Snakefile, line 108:
+Command 'set -euo pipefail;  /Users/anitido/miniforge3/envs/viral_escape/bin/python3.10 '/Users/anitido/Documents/GitHub/Escapability/Viral Escape Analysis/.snakemake/scripts/tmpuqmkqz2q.codon_caller.py'' returned non-zero exit status 1.
+  File "/Users/anitido/Documents/GitHub/Escapability/Viral Escape Analysis/Snakefile", line 108, in __rule_call
+  File "/Users/anitido/miniforge3/envs/viral_escape/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+[Thu Aug 29 12:35:07 2024]
+Finished job 11.
+2 of 7 steps (29%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-08-29T123506.090896.snakemake.log

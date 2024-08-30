@@ -1,0 +1,37 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job               count
+--------------  -------
+all                   1
+merge_coverage        1
+total                 2
+
+Select jobs to execute...
+
+[Thu Aug 29 12:34:02 2024]
+rule merge_coverage:
+    input: data/coverage/CD00-m000-00-JRCSF.csv, data/coverage/CD00-m000-00-REJOc.csv
+    output: data/coverage_merged.csv
+    jobid: 10
+    reason: Missing output files: data/coverage_merged.csv
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:34:03 2024]
+Finished job 10.
+1 of 2 steps (50%) done
+Select jobs to execute...
+
+[Thu Aug 29 12:34:03 2024]
+localrule all:
+    input: data/var_freq_merged.csv, data/coverage_merged.csv
+    jobid: 0
+    reason: Input files updated by another job: data/coverage_merged.csv
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+[Thu Aug 29 12:34:03 2024]
+Finished job 0.
+2 of 2 steps (100%) done
+Complete log: .snakemake/log/2024-08-29T123402.327949.snakemake.log

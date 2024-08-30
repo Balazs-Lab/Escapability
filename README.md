@@ -3,9 +3,9 @@
 ## Pipelines and Data
 
 This repository contains the following:
-* [Viral Escape Analysis](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Analysis/) - pipeline and code used for the analysis of viral escape from antibodies, this was the software used to identify the primary antibody escape mutations 
+* [Viral Escape Pipeline](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Analysis/) - pipeline and code used for the analysis of viral escape from antibodies, this was the software used to identify the primary antibody escape mutations 
 * [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) - viral escape Excel data tables for each sample set, these can be used to explore the frequency of amino acid at every site
-* [Viral Diversity Analysis](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Diversity%20Analysis) - pipeline and code used for analysis of viral diversity prior to treatment with antibodies 
+* [Viral Diversity Pipeline](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Diversity%20Analysis) - pipeline and code used for analysis of viral diversity prior to treatment with antibodies 
 
 ## System Requirements
 The details about how to run each pipeline can be found in their respective directories. 
@@ -18,7 +18,7 @@ Both pipelines contain an environment.yml file documenting the specific software
 
 ## Installation Guide
 
-To install the software required to run the escapability pipeline, ensure that the most recent version of [Conda](https://conda.io) is installed on the computer. Additionally, the [CodonCaller](https://github.com/Balazs-Lab/CodonCaller)  software will need to be downloaded from GitHub and installed. 
+To install the software required to run the escapability pipeline, ensure that the most recent version of [Conda](https://conda.io) is installed on the computer. Additionally, to run the Viral Escape Pipeline the [CodonCaller](https://github.com/Balazs-Lab/CodonCaller) software will need to be downloaded from GitHub and installed. 
 
 Once [Conda](https://conda.io) is installed, either pipeline environment can be downloaded using the following code:
 
