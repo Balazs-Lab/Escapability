@@ -1,4 +1,4 @@
-# HIV broadly neutralizing antibody escapability drives the therapeutic efficacy of vectored immunotherapy
+# HIV broadly neutralizing antibody-specific escape dynamics drive the outcome of AAV vectored immunotherapy in humanized mice
 
 ## Pipelines and Data
 

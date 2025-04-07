@@ -5,12 +5,12 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="CodonCaller",
-    version="1.2.1",
+    version="1.0.0",
     author="Adam Nitido",
-    author_email="anitido@mgh.harvard.edu",
+    author_email="adamnitido@gmail.com",
     description="Codon Based Variant Caller for HIV Deep Sequencing Data",
     long_description=long_description,
-    url="https://github.com/adamn102/CodonCalling2",
+    url="https://github.com/adamnitido/CodonCaller",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

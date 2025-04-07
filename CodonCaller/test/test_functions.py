@@ -41,48 +41,8 @@ class TestMisMap(unittest.TestCase):
         cds = "JRCSF"
         self.test_instance.process_sample(cds)
         self.test_instance.aa_count_to_freq(cds)
-        print(self.test_instance.counts)
+        print(self.test_instance.aa_counts)
         self.test_instance.write_to_csv("../test_data/calls/map_test.csv")
-
-#codon test"
-class TestMisMapCodon(unittest.TestCase):
-
-
-    def setUp(self):
-        bed_file = "../test_data/bed_file/JRCSF.bed"
-        bam_file = "../test_data/sorted_reads/CD27-m787-20-JRCSF.bam"
-        reference_fasta = "../test_data/reference_sequence/JRCSF-reference.fa"
-        read_quality_threshold = 40
-        base_quality_threshold = 30
-        self.test_instance = VariantCaller(bed_file, bam_file, reference_fasta, read_quality_threshold,
-                                           base_quality_threshold, report_as_codons=True)
-
-    def test_codon_mistmap(self):
-        read = self.test_instance.reads[2500]
-        cds = "JRCSF"
-
-        codon_starts = [i for i in range(52, 2598, 3)]
-        read_sequence, read_positions, quality, indels = parse_read(read)
-        print(read_sequence)
-        print(read_positions)
-        print(indels)
-
-        read_sequence, read_positions, quality, indels = self.test_instance.map_correct(read)
-        print(read_sequence)
-        print(read_positions)
-        print(indels)
-
-        codon_positions, codons, quality_sum = self.test_instance.read_to_codon(cds, read_sequence, read_positions, quality, indels)
-        print(codon_positions)
-        print(codons)
-
-    def test_pipeline(self):
-        cds = "JRCSF"
-        self.test_instance.process_sample(cds)
-        self.test_instance.aa_count_to_freq(cds)
-        print(self.test_instance.counts)
-        self.test_instance.write_to_csv("../test_data/calls/map_test_codon.csv")
-
 
 ### WT Testing ###
 class TestYourCodeWT(unittest.TestCase):
@@ -94,9 +54,7 @@ class TestYourCodeWT(unittest.TestCase):
         read_quality_threshold = 40
         base_quality_threshold = 30
         self.test_instance = VariantCaller(bed_file, bam_file, reference_fasta, read_quality_threshold,
-                                           base_quality_threshold, report_as_codons=False)
-    def test_codon_mode(self):
-        print(self.test_instance.report_as_codons)
+                                           base_quality_threshold)
 
     def test_load_cds_regions(self):
         self.test_instance.load_cds_regions()
@@ -151,7 +109,7 @@ class TestYourCodeWT(unittest.TestCase):
     def test_process_samples(self):
         cds = "Env"
         self.test_instance.process_sample(cds)
-        print(self.test_instance.counts)
+        print(self.test_instance.aa_counts)
 
     def test_process_aa_count_to_freq_WT(self):
         cds = "Env"
@@ -165,84 +123,6 @@ class TestYourCodeWT(unittest.TestCase):
         self.test_instance.aa_count_to_freq(cds)
         self.test_instance.write_to_csv("../test_data/calls/WT_test.csv")
 
-### Codon Output Testing ###
-class TestYourCodeWTCodon(unittest.TestCase):
-
-    def setUp(self):
-        bed_file = "../test_data/bed_file/REJOc_mini.bed"
-        bam_file = "../test_data/mapped_reads/CD00-m000-WT-REJOc.bam"
-        reference_fasta = "../test_data/reference_sequence/REJOc-mini.fa"
-        read_quality_threshold = 40
-        base_quality_threshold = 30
-        self.test_instance = VariantCaller(bed_file, bam_file, reference_fasta, read_quality_threshold,
-                                           base_quality_threshold, report_as_codons=True)
-    def test_codon_mode(self):
-        print(self.test_instance.report_as_codons)
-    def test_load_cds_regions(self):
-        self.test_instance.load_cds_regions()
-        self.assertEqual(self.test_instance.cds_regions['Env'][0], 0)
-        self.assertEqual(self.test_instance.cds_regions['Env'][1], 585)
-
-    def test_read_fasta(self):
-        self.test_instance.read_fasta()
-        print(self.test_instance.reference_sequence)
-        self.assertEqual(len(self.test_instance.reference_sequence), 597)
-
-    def test_codon_cds(self):
-        self.test_instance.reference_codons()
-        print(self.test_instance.reference_codons)
-
-    def test_parse_read(self):
-        read = self.test_instance.reads[1]
-        cds = "Env"
-        print(read.seq)
-        read_sequence, read_positions, quality, indels = parse_read(read)
-        print(indels)
-        print(read_positions)
-        print(quality)
-        print(read_sequence)
-
-    def test_fix_indels(self):
-        read = self.test_instance.reads[6]
-        cds = "Env"
-        read_sequence, read_positions, quality, indels = parse_read(read)
-        print(indels)
-        print(read_positions)
-        print(quality)
-        print(read_sequence)
-
-        read_sequence, read_positions, quality = fix_indels(read_sequence, read_positions, quality, indels)
-
-        print(read_positions)
-        print(read_sequence)
-        print(quality)
-
-    def test_compiled_reads(self):
-        cds = "Env"
-        out_dict = self.test_instance.compile_reads(cds)
-        print(out_dict)
-        # print(len(out_dict['77i']) + len(out_dict['77']))
-        clean_dict = fix_insertions(out_dict)
-        print(clean_dict)
-        # print(len(clean_dict['77']))
-        print(clean_dict.values())
-
-    def test_process_samples(self):
-        cds = "Env"
-        self.test_instance.process_sample(cds)
-        print(self.test_instance.counts)
-
-    def test_process_aa_count_to_freq_WT(self):
-        cds = "Env"
-        self.test_instance.process_sample(cds)
-        self.test_instance.aa_count_to_freq(cds)
-        print(self.test_instance.mut_call)
-
-    def test_pipeline(self):
-        cds = "Env"
-        self.test_instance.process_sample(cds)
-        self.test_instance.aa_count_to_freq(cds)
-        self.test_instance.write_to_csv("../test_data/calls/WT_codon_test.csv")
 
 ### SNP Testing ###
 class TestYourCodeSNP(unittest.TestCase):
@@ -294,7 +174,7 @@ class TestYourCodeSNP(unittest.TestCase):
     def test_process_samples(self):
         cds = "Env"
         self.test_instance.process_sample(cds)
-        print(self.test_instance.counts)
+        print(self.test_instance.aa_counts)
 
     def test_process_aa_count_to_freq(self):
         cds = "Env"
@@ -360,7 +240,7 @@ class TestYourCodeIN(unittest.TestCase):
     def test_process_samples(self):
         cds = "Env"
         self.test_instance.process_sample(cds)
-        print(self.test_instance.counts)
+        print(self.test_instance.aa_counts)
 
     def test_process_aa_count_to_freq(self):
         cds = "Env"
@@ -622,7 +502,7 @@ class TestYourCodeDEL(unittest.TestCase):
     def test_process_samples(self):
         cds = "Env"
         self.test_instance.process_sample(cds)
-        print(self.test_instance.counts)
+        print(self.test_instance.aa_counts)
 
     def test_process_aa_count_to_freq(self):
         cds = "Env"
@@ -895,7 +775,7 @@ class TestYourCodeINDEL(unittest.TestCase):
     def test_process_samples(self):
         cds = "Env"
         self.test_instance.process_sample(cds)
-        print(self.test_instance.counts)
+        print(self.test_instance.aa_counts)
 
     def test_process_aa_count_to_freq(self):
         cds = "Env"

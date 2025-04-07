@@ -2,7 +2,7 @@
 
 import argparse
 from argparse import Namespace
-from CodonCaller import *
+from CodonCaller import VaricantCaller
 
 """
 Runs Codon Caller Variant Call Functions
@@ -22,7 +22,7 @@ def main():
 
     args: Namespace = parser.parse_args()
 
-    File = variant_caller.VariantCaller( args.bed_file, args.bam_file, args.reference_fasta, args.read_quality_threshold, args.base_quality_threshold=35)
+    File = VariantCaller( args.bed_file, args.bam_file, args.reference_fasta, args.read_quality_threshold, args.base_quality_threshold=35)
 
     File.process_sample(args.cds)
     File.aa_count_to_freq(args.cds)

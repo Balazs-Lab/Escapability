@@ -2,7 +2,11 @@ configfile: "config.yaml"
 
 rule all:
     input:
-        #expand("data/sorted_reads/{sample}.bam.bai", sample=config["samples"]),
+        #expand("data/5-calls/{sample}.vcf", sample=config["samples"])
+        #expand("data/var_freq/{sample}.csv", sample=config["samples"])
+        expand("data/4-sorted_reads/{sample}.bam.bai", sample=config["samples"]),
+        expand("data/6-coverage/{sample}.csv", sample=config["samples"]),
+        #expand("data/haplotypes/{sample}.csv", sample=config["samples"]),
         "data/var_freq_merged.csv",
         "data/coverage_merged.csv"
         
@@ -11,8 +15,8 @@ rule all:
 #filter sequences
 rule filter_sequences:
     input:
-        R1 = "data/fastq_files/{sample}_R1.fastq.gz",
-        R2 = "data/fastq_files/{sample}_R2.fastq.gz"
+        R1 = "data/1-fastq_files/{sample}_R1.fastq.gz",
+        R2 = "data/1-fastq_files/{sample}_R2.fastq.gz"
     params:
         tm="0",
         qs="25", # the quality value that a base is qualified. Default 15 means phred quality >=Q15 is qualified.
@@ -20,8 +24,8 @@ rule filter_sequences:
     log:
         "logs/fastq/{sample}.html"
     output:
-        R1 = "data/fastq_filtered/{sample}_R1.fastq.gz",
-        R2 = "data/fastq_filtered/{sample}_R2.fastq.gz"
+        R1 = "data/2-fastq_filtered/{sample}_R1.fastq.gz",
+        R2 = "data/2-fastq_filtered/{sample}_R2.fastq.gz"
     shell:
         "fastp --in1 {input.R1} --in2 {input.R2} --out1 {output.R1} --out2 {output.R2} "
         " --trim_tail1 {params.tm} --trim_tail2 {params.tm} --qualified_quality_phred {params.qs} "
@@ -30,15 +34,15 @@ rule filter_sequences:
 
 def get_reference(wildcards):
     reference = config["samples"][wildcards.sample].split("-")[-1].split('_')[0]
-    return "data/reference_index/" + reference + "-reference.fa",
+    return "data/0-reference_index/" + reference + "-reference.fa",
 
 def get_bed(wildcards):
     reference = config["samples"][wildcards.sample].split("-")[-1].split('_')[0]
-    return "data/bed_file/" + reference + ".bed",
+    return "data/0-bed_file/" + reference + ".bed",
     
 def get_primer_bed(wildcards):
     reference = config["samples"][wildcards.sample].split("-")[-1].split('_')[0]
-    return "data/bed_file/" + reference + "_primer.bed",
+    return "data/0-bed_file/" + reference + "_primer.bed",
     
 def get_gff(wildcards):
     reference = config["samples"][wildcards.sample].split("-")[-1].split('_')[0]
@@ -54,17 +58,17 @@ def get_cotig(wildcards):
 
 def get_haplotype_bed(wildcards):
     reference = config["samples"][wildcards.sample].split("-")[-1].split('_')[0]
-    return "data/bed_file/" + reference + "_haplotypes.bed",
+    return "data/0-bed_file/" + reference + "_haplotypes.bed",
 
 #bowtie2 mappping of filtered reads
 rule bowtie2_map:
     input:
-        #ref = "data/reference_index/Rp0-reference.fa" + reference,
+        #ref = "data/0-reference_index/Rp0-reference.fa" + reference,
         ref = get_reference,
-        R1 = "data/fastq_filtered/{sample}_R1.fastq.gz",
-        R2 = "data/fastq_filtered/{sample}_R2.fastq.gz"
+        R1 = "data/2-fastq_filtered/{sample}_R1.fastq.gz",
+        R2 = "data/2-fastq_filtered/{sample}_R2.fastq.gz"
     output:
-        "data/mapped_reads/{sample}.bam"
+        "data/3-mapped_reads/{sample}.bam"
     log:
         "logs/bowtie2/{sample}.log"
     threads: 8
@@ -74,56 +78,55 @@ rule bowtie2_map:
 
 rule samtools_sort:
     input:
-        "data/mapped_reads/{sample}.bam"
+        "data/3-mapped_reads/{sample}.bam"
     output:
-        "data/sorted_reads/{sample}.bam"
+        "data/4-sorted_reads/{sample}.bam"
     shell:
         "samtools sort {input} -o {output}"
 
 rule samtools_index:
     input:
-        "data/sorted_reads/{sample}.bam"
+        "data/4-sorted_reads/{sample}.bam"
     output:
-        "data/sorted_reads/{sample}.bam.bai"
+        "data/4-sorted_reads/{sample}.bam.bai"
     shell:
         "samtools index {input}"
 
 rule call:
     input:
         fa=get_reference,
-        bam="data/sorted_reads/{sample}.bam",
-        bed=get_bed,
-        bai="data/sorted_reads/{sample}.bam.bai"
+        bam="data/4-sorted_reads/{sample}.bam",
+        bed=get_bed
     params:
         r=40,
         b=110,
         cds="Env",
     output:
-        "data/calls/{sample}.csv",
-        "data/coverage/{sample}.csv"
+        "data/5-calls/{sample}.csv",
+        "data/6-coverage/{sample}.csv"
     script:
-        "scripts/codon_caller.py"
+        "scripts/snakemake/codon_caller.py"
 
 rule merge_freq:
     input:
-        expand("data/calls/{sample}.csv", sample=config["samples"])
+        expand("data/5-calls/{sample}.csv", sample=config["samples"])
     output:
-        "data/var_freq_merged.csv"
+        "data/7-merged_output/var_freq_merged.csv"
     script:
-        "scripts/merge_aa_freq.py"
+        "scripts/snakemake/merge_aa_freq.py"
 
 rule merge_coverage:
     input:
-        expand("data/coverage/{sample}.csv", sample=config["samples"])
+        expand("data/6-coverage/{sample}.csv", sample=config["samples"])
     output:
-        "data/coverage_merged.csv"
+        "data/7-merged_output/coverage_merged.csv"
     script:
-        "scripts/merge_coverage.py"
+        "scripts/snakemake/merge_coverage.py"
 
 rule haplotype:
     input:
         fa=get_reference,
-        bam="data/sorted_reads/{sample}.bam",
+        bam="data/4-sorted_reads/{sample}.bam",
         bed=get_haplotype_bed
     output:
         "data/haplotypes/{sample}.csv",

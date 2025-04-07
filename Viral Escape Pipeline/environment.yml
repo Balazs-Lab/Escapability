@@ -191,4 +191,5 @@ dependencies:
   - zipp=3.20.1=pyhd8ed1ab_0
   - zstandard=0.23.0=py310h0e17136_0
   - zstd=1.5.6=h915ae27_0
-prefix: /Users/anitido/miniforge3/envs/viral_escape
+  - openpyxl
+prefix: /Users/anitido/miniforge3/envs/viral_escape2
