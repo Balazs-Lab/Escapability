@@ -35,3 +35,4 @@ This directory contains the escape barrier score Rscript, analysis input data, a
 
 
 ## [Post Escape Viral Load](https://github.com/Balazs-Lab/Escapability/tree/main/Escape%20Barrier%20Analysis/post%20escape%20viral%20load) 
+This directory contains the post escape viral load analysis spreadsheet. 
