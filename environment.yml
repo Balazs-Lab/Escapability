@@ -1,6 +1,5 @@
 name: viral_escape
 channels:
-  - defaults
   - conda-forge
   - bioconda
 dependencies:

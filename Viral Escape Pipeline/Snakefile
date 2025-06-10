@@ -1,4 +1,5 @@
 configfile: "configs/JRCSF_DEMO_config.yaml"
+configfile: "configs/REJOc_DEMO_config.yaml"
 
 rule all:
     input:
