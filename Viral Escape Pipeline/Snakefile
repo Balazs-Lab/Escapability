@@ -1,5 +1,4 @@
 configfile: "configs/JRCSF_DEMO_config.yaml"
-configfile: "configs/REJOc_DEMO_config.yaml"
 
 rule all:
     input:
@@ -7,7 +6,7 @@ rule all:
         expand("data/4-sorted_reads/{sample}.bam.bai", sample=config["samples"]),
         #expand("data/6-coverage/{sample}.csv", sample=config["samples"]),
         #config["merged_output"]["var_freq"],
-        config["merged_output"]["coverage"],
+        # config["merged_output"]["coverage"],
         config["analysis"]["average_mutation"],
         config["analysis"]["haplotype_all"],
         config["analysis"]["haplotype_nonsyn"]
