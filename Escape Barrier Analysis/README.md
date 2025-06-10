@@ -18,9 +18,18 @@ There is one haplotype analysis sheet per bNAb - Virus combination presented in 
 This directory contains the escape barrier score Rscript, analysis input data, and analysis output data. 
 ### Input Data 
 [Path Coordinates](https://github.com/Balazs-Lab/Escapability/blob/main/Escape%20Barrier%20Analysis/escape%20barrier%20score/data/Path%20Coordinates.xlsx): This table contains the compiled IC50 and Growth Rate (Doubling Time) data for each virus-antibody escape path combination. 
+
 [Path Frequencies](https://github.com/Balazs-Lab/Escapability/blob/main/Escape%20Barrier%20Analysis/escape%20barrier%20score/data/Path%20Frequencies.xlsx): This table contains the haplotype specific frequency of each virus-antibody escape path combination. This data is used to scale the relative contributions of each esacpe path to the total Escape Barrier score.  
 
+### Script
+
+
 ### Output Data
+
+[Path Specific AUC](https://github.com/Balazs-Lab/Escapability/blob/main/Escape%20Barrier%20Analysis/escape%20barrier%20score/data/PathEscapeBarrierScore.csv): This table contains the AUC calculation for each specific escape path.
+
+
+[Total Escape Barrier Score](https://github.com/Balazs-Lab/Escapability/blob/main/Escape%20Barrier%20Analysis/escape%20barrier%20score/data/TotalEscapeBarrierScore.csv): This table contains the frequency normalized AUC Escape Barrier Scores for each virus-antibody combination. 
 
 
 ## Post Escape Viral Load 

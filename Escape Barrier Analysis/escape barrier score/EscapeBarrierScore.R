@@ -47,18 +47,18 @@ write.csv(escape_paths, "data/PathEscapeBarrierScore.csv", row.names = FALSE)
 
 # group by virus antibody combinations, 
 # return only unique antibody virus combinations and the escapability score
-escapeability <- escape_paths %>%
+escapebarrierscore <- escape_paths %>%
   mutate(NormAUC = AUC *Frequency) %>% 
   group_by(Virus, Antibody) %>%
-  mutate(Escapability_Score = sum(NormAUC)) %>% 
-  dplyr::select(ID,Virus, Antibody, Escapability_Score) %>%
+  mutate(Escape_Barrier_Score = sum(NormAUC)) %>% 
+  dplyr::select(ID,Virus, Antibody, Escape_Barrier_Score) %>%
   unique() %>%
   drop_na()
 
 # sort by ID
-escapeability <- escapeability %>%
+escapebarrierscore <- escapebarrierscore %>%
   arrange(ID)
 
-write.csv(escapeability, "data/TotalEscapeBarrierScore.csv", row.names = FALSE)
+write.csv(escapebarrierscore, "data/TotalEscapeBarrierScore.csv", row.names = FALSE)
 
 

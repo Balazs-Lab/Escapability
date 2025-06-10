@@ -1,4 +1,4 @@
-"ID","Virus","Antibody","Escapability_Score"
+"ID","Virus","Antibody","Escape_Barrier_Score"
 1,"REJOc","VRC07",496.925275294118
 2,"REJOc","N6",219.305447352941
 3,"REJOc","PGDM1400",59.13500348
