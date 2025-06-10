@@ -13,7 +13,7 @@ This directory contains the haplotype summary analysis of nonsynonymous mutation
 There is one haplotype analysis sheet per bNAb - Virus combination presented in the paper. 
 
 
-## Escape Barrier Score
+## [Escape Barrier Score](https://github.com/Balazs-Lab/Escapability/tree/main/Escape%20Barrier%20Analysis/escape%20barrier%20score)
 ### Viral Escape Path Escape Barrier Calculation and Data
 This directory contains the escape barrier score Rscript, analysis input data, and analysis output data. 
 ### Input Data 
@@ -21,7 +21,7 @@ This directory contains the escape barrier score Rscript, analysis input data, a
 
 [Path Frequencies](https://github.com/Balazs-Lab/Escapability/blob/main/Escape%20Barrier%20Analysis/escape%20barrier%20score/data/Path%20Frequencies.xlsx): This table contains the haplotype specific frequency of each virus-antibody escape path combination. This data is used to scale the relative contributions of each esacpe path to the total Escape Barrier score.  
 
-### Script
+### [Script](https://github.com/Balazs-Lab/Escapability/blob/main/Escape%20Barrier%20Analysis/escape%20barrier%20score/EscapeBarrierScore.R)
 
 
 ### Output Data
