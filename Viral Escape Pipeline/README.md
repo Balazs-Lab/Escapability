@@ -1,52 +1,75 @@
-Viral Escape Pipeline 
-=====================
+# Viral Escape Pipeline
 
-## Overview 
-This is the pipeline that was used to identify the HIV antibody escape mutants profiled in the paper. The entire pipeline is included in this directory, including a local copy of the [CodonCaller](https://github.com/adamn102/CodonCaller) python package and all of the relevant python scripts used in sample analysis. Two toy raw data samples are included for demonstration purposes. If you are interested in re-running the entire analysis with all of the raw data, please contact us via the corresponding author's email address. If you would like to directly view the pipeline output data, please see the [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) repository. Here the compiled data excel tables can be downloaded.
+## Overview
+
+This pipeline was used to identify HIV antibody escape mutants as profiled in the associated publication. The entire pipeline is included in this directory, along with a local copy of the [CodonCaller](https://github.com/adamn102/CodonCaller) Python package, which is **fully integrated** and does **not require separate installation**. All relevant Python scripts used in sample analysis are also included.
+
+Two small raw data samples are provided for demonstration purposes. If you are interested in re-running the full analysis with the complete dataset, please contact the corresponding author. To view the final output of the pipeline directly, including compiled data tables, visit the [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) repository.
 
 ## System Requirements and Installation Guide
-The software required to run the escapability pipeline can be installed using [Conda](https://conda.io) and manually installing CondonCaller software using Python -m pip. If you clone this directory, there is a copy of CodonCaller included, which can be used on the demo or provided data. While this software was developed and run on a MacOS system, the pipeline can be run on any standard machine that can run Python and Conda. All other required software will be installed when creating the Conda environment:  
 
-    conda env create -f environment.yml
+The pipeline runs on any system that supports [Conda](https://conda.io) and Python. Although originally developed on macOS, it should work on any standard platform (Linux, Windows Subsystem for Linux, etc.).
 
-For the Escape Pipeline, once the initial environment is set up, the CodonCaller software will need to be installed. Activate the Conda environment and install the CodonCaller software:
+To set up the environment:
 
-    conda activate viral_escape
-    cd /path/to/CodonCaller
-    python -m pip install -e CodonCaller
+```bash
+conda env create -f environment.yml
+conda activate viral_escape
+```
 
-The typical installation time for this software on a conventional computer is less than ten minutes.
+**Note**: CodonCaller is now included locally in this repository and used directly by the pipeline. No manual installation is necessary.
 
 ## Demo
 
-Before running the snakemake, be sure that all files have the correct naming convention. From the name, the computer should be able to determine the experiment number (i.e CD10), the mouse ID, the virus strain, and the week the sample was taken. Additionally, identical samples with multiple sequencing runs (multiple fastq files) can be merged into one file. 
+Before running the pipeline, ensure that all FASTQ files follow the correct naming convention. From the filename, the pipeline expects to infer:
 
-The demo files are CD00-m000-00-JRCSF and CD00-m000-00-REJOc. Theses samples are two subsets of actual files which allow the user to test that the pipeline is integrated and running properly. To specify which samples are to be run in the pipeline, update the [Config.yaml](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/config.yaml) file with the sample names and the fastq file path.  
+* The experiment number (e.g., `CD10`)
+* The mouse ID
+* The virus strain
+* The week the sample was taken
 
-Create environment:
+Identical samples with multiple sequencing runs (multiple FASTQ files) should be merged prior to analysis.
 
-    conda env create -f environment.yml
+### Included Demo Data
 
-Activate environment:
+The provided demo samples are:
 
-    conda activate viral_escape
+* `CD00-m000-00-JRCSF`
+* `CD00-m000-00-REJOc`
 
-Install CondonCaller:
+These are subsets of actual files that allow you to verify the pipeline is functioning properly.
 
-     python -m pip install -e CodonCaller
+To specify which samples to run, edit the [`config.yaml`](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/config.yaml) file with sample names and paths to FASTQ files.
 
-Build reference indexes:
+### Running the Demo
 
-    bowtie2-build data/reference_index/REJOc-reference.fa data/reference_index/REJOc-reference.fa
-    bowtie2-build data/reference_index/JRCSF-reference.fa data/reference_index/JRCSF-reference.fa
-    
-    bowtie2-build data/reference_index/REJOc-reference.fa data/reference_index/REJOc.fa
-    bowtie2-build data/reference_index/JRCSF-reference.fa data/reference_index/JRCSF.fa
-    
-    lofreq faidx data/reference_index/JRCSF-reference.fa
-    lofreq faidx data/reference_index/REJOc-reference.fa
+1. **Create environment**:
 
-Run Snakemake::
+   ```bash
+   conda env create -f environment.yml
+   ```
 
-    snakemake --cores 2
+2. **Activate environment**:
 
+   ```bash
+   conda activate viral_escape
+   ```
+
+3. **Build reference indexes** (required once per reference):
+
+   ```bash
+   bowtie2-build data/reference_index/REJOc-reference.fa data/reference_index/REJOc-reference.fa
+   bowtie2-build data/reference_index/JRCSF-reference.fa data/reference_index/JRCSF-reference.fa
+
+   bowtie2-build data/reference_index/REJOc-reference.fa data/reference_index/REJOc.fa
+   bowtie2-build data/reference_index/JRCSF-reference.fa data/reference_index/JRCSF.fa
+
+   lofreq faidx data/reference_index/JRCSF-reference.fa
+   lofreq faidx data/reference_index/REJOc-reference.fa
+   ```
+
+4. **Run the pipeline**:
+
+   ```bash
+   snakemake --cores 2
+   ```
