@@ -36,10 +36,6 @@ To install the software for either pipeline:
    conda activate viral_escape  # or viral_diversity
    ```
 
-> **Note**: For the **Viral Escape Pipeline**, the CodonCaller software is already included and used internally by the pipeline. No separate installation or pip command is required.
-
-Typical installation time is under 10 minutes on a standard desktop machine.
-
 ## Demo / Instructions for Use
 
 Full usage instructions are provided in the `README.md` file inside each pipeline directory:
