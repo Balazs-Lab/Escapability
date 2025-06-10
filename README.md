@@ -3,61 +3,73 @@
 ## Pipelines and Data
 
 This repository contains the following:
-* [Viral Escape Pipeline](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/) - pipeline and code used for the analysis of viral escape from antibodies, this was the software used to identify the primary antibody escape mutations 
-* [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) - viral escape pipeline output data Excel tables for each sample set, these can be used to explore the frequency of every amino acid at every site
-* [Viral Diversity Pipeline](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Diversity%20Pipeline) - pipeline and code used for analysis of viral diversity prior to treatment with antibodies 
-* [Escape Barrier Analysis](https://github.com/Balazs-Lab/Escapability/tree/main/Escape%20Barrier%20Analysis) - data and scripts used for the Escape Barrier calculations 
+
+* [**Viral Escape Pipeline**](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/)
+  Pipeline and code used for the analysis of viral escape from antibodies. This software was used to identify the primary antibody escape mutations.
+
+* [**Viral Escape Data**](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data)
+  Output data from the escape pipeline in Excel format for each sample set. These tables allow exploration of the frequency of every amino acid at every site.
+
+* [**Viral Diversity Pipeline**](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Diversity%20Pipeline)
+  Pipeline and code used for the analysis of viral diversity prior to antibody treatment.
+
+* [**Escape Barrier Analysis**](https://github.com/Balazs-Lab/Escapability/tree/main/Escape%20Barrier%20Analysis)
+  Data and scripts used for the escape barrier calculations.
 
 ## System Requirements
-The details about how to run each pipeline can be found in their respective directories. 
-Both pipelines contain an environment.yml file documenting the specific software dependencies. This software was developed and run on a MacOS system; however, the pipeline can be run on any standard machine that can run Python and [Conda](https://conda.io/).
- 
-[Viral Escape Pipeline Requirements](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/environment.yml)
 
-[Viral Diversity Pipeline Requirements](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Pipeline/environment.yml)  
- 
+Each pipeline includes an `environment.yml` file listing software dependencies. This software was developed and tested on macOS but is fully compatible with any standard system that supports [Conda](https://conda.io) and Python (Linux, WSL, etc.).
+
+* [Viral Escape Pipeline Requirements](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/environment.yml)
+* [Viral Diversity Pipeline Requirements](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Pipeline/environment.yml)
 
 ## Installation Guide
 
-To install the software required to run the escapability pipeline, ensure that the most recent version of [Conda](https://conda.io) is installed on the computer. Additionally, to run the Viral Escape Pipeline the [CodonCaller](https://github.com/Balazs-Lab/CodonCaller) software will need to be downloaded from GitHub and installed. 
+To install the software for either pipeline:
 
-Once [Conda](https://conda.io) is installed, either pipeline environment can be downloaded using the following code:
+1. Ensure [Conda](https://conda.io) is installed.
+2. Clone the repository and navigate to the desired pipeline folder.
+3. Create and activate the environment:
 
-    conda env create -f environment.yml
+   ```bash
+   conda env create -f environment.yml
+   conda activate viral_escape  # or viral_diversity
+   ```
 
-For the Escape Pipeline, once the initial environment is set up, the CodonCaller software will need to be installed. Activate the Conda environment and install the CodonCaller software:
+> **Note**: For the **Viral Escape Pipeline**, the CodonCaller software is already included and used internally by the pipeline. No separate installation or pip command is required.
 
-    conda activate viral_escape
-    cd /path/to/CodonCaller
-    python -m pip install -e CodonCaller
+Typical installation time is under 10 minutes on a standard desktop machine.
 
-The typical installation time for this software on a conventional computer is less than ten minutes.
-    
+## Demo / Instructions for Use
 
-## Demo / Instructions for use
+Full usage instructions are provided in the `README.md` file inside each pipeline directory:
 
-A full demo on how to to run each pipeline can be found in the README.md file of each pipeline directory.
+* [Viral Escape Pipeline Demo](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/README.md)
+* [Viral Diversity Pipeline Demo](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Pipeline/README.md)
 
-[Viral Escape Pipeline Demo](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/README.md)
+Both pipelines include demo datasets and have been fully run on those examples, demonstrating all expected input/output files.
 
-[Viral Diversity Pipeline Demo](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Pipeline/README.md)
+Each pipeline uses the [Snakemake](https://snakemake.readthedocs.io) workflow engine to manage execution. The core logic and rules are defined in:
 
-Currently, both pipelines are populated with example datasets that have been fully run on the pipeline, demonstrating the input and output files of the pipeline. 
+* [Viral Escape Snakefile](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/Snakefile)
+* [Viral Diversity Snakefile](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Pipeline/Snakefile)
 
-Both pipelines use the [snakemake](https://snakemake.readthedocs.io) pipeline system to process the data, such that the structure and code of the pipeline live in each pipeline's respective snakemake file:
+Specify the number of cores to parallelize execution:
 
-[Viral Escape Pipeline](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/Snakefile)
+```bash
+snakemake --cores 4
+```
 
-[Viral Diversity Pipeline](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Pipeline/Snakefile)  
- 
+Run time depends on sample number and compute resources; most individual samples can be processed in under an hour on a typical machine.
 
-Specifying the number of cores will allow the processes to run in parallel. Total run time will depend on the number of samples, but a typical sample will finish the processing in less than an hour on a normal desktop computer. 
-
-The expected output from the viral escape pipeline is a .csv file calling the frequency of each mutation in a per mouse base that can be found in the Viral Escape Data directory. These files can later be merged together, generating a summary file with all data.
+The **Viral Escape Pipeline** outputs `.csv` files that report mutation frequencies per sample/mouse. These can be merged into summary files for downstream analysis.
 
 ## Viral Escape Pipeline Output Data
 
-The pooled and processed [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) that was used in the paper can be downloaded for additional analysis. Once the Excel file is downloaded and opened, move to the Mutation Dashboard tab to directly interact with the data. Users can select any position across the HIV envelope to view the following on a per codon site basis:
-* Virus strain specific amino acid position alignment with HXB2
-* Percent of total reads with an amino acid change relative to wild type (the reference sequence)
-* Breakdown of the various types of amino acid changes 
+The processed [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) used in the publication is available for download and further analysis.
+
+After downloading the Excel file, navigate to the **Mutation Dashboard** tab to interact with the data. For each codon site in the HIV envelope, the following is available:
+
+* Virus-strain-specific amino acid position alignment with HXB2
+* Percent of total reads showing any amino acid change relative to wild type
+* Breakdown of the types and frequencies of amino acid changes
