@@ -6,7 +6,7 @@ This repository contains the following:
 * [Viral Escape Pipeline](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/) - pipeline and code used for the analysis of viral escape from antibodies, this was the software used to identify the primary antibody escape mutations 
 * [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) - viral escape pipeline output data Excel tables for each sample set, these can be used to explore the frequency of every amino acid at every site
 * [Viral Diversity Pipeline](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Diversity%20Pipeline) - pipeline and code used for analysis of viral diversity prior to treatment with antibodies 
-* [Escape Barrier Data and Analysis](https://github.com/Balazs-Lab/Escapability/tree/main/Escape%20Barrier%20Analysis) - data, script, and Excel tables used for the Escape Barrier calculations 
+* [Escape Barrier Analysis](https://github.com/Balazs-Lab/Escapability/tree/main/Escape%20Barrier%20Analysis) - data, script, and Excel tables used for the Escape Barrier calculations 
 
 ## System Requirements
 The details about how to run each pipeline can be found in their respective directories. 
