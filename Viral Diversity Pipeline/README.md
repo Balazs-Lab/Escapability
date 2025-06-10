@@ -1,37 +1,63 @@
-Viral Diversity Pipeline
-========================
+# Viral Diversity Pipeline
 
 ## Overview
-This is the pipeline that was used to evaluate the diversity of HIV populations prior to anitbody treatment. Two toy raw data samples are included for demonstration purposes. If you are interested in re-running the entire analysis with all of the raw data, please contact us via the corresponding author's email address.
 
-## System Requirements and Installation Guide
-The software required to run the escapability pipeline can be installed using [Conda](https://conda.io). While this software was developed and run on a MacOS system, the pipeline can be run on any standard machine that can run Python and Conda. All other required software will be installed when creating the Conda environment:  
+This pipeline evaluates the genetic diversity of HIV populations prior to antibody treatment. Two toy raw data samples are included for demonstration purposes. If you're interested in running the full analysis on the complete dataset, please contact the corresponding author for access.
 
-    conda env create -f environment.yml
+## System Requirements and Installation
 
-## Demo
+The pipeline requires [Conda](https://conda.io) for environment and dependency management. While developed on macOS, it is compatible with any system that supports Python and Conda.
 
-Before running the snakemake, be sure that all files have the correct naming convention. From the name, the computer should be able to determine the experiment number (i.e CD10), the mouse ID, the virus strain, and the week the sample was taken. Additionally, identical samples with multiple sequencing runs (multiple fastq files) can be merged into one file. 
+To set up the environment:
 
-The demo files are CD00-m000-00-JRCSF and CD00-m000-00-REJOc. Theses samples are two subsets of actual files which allow the user to test that the pipeline is integrated and running properly. To specify which samples are to be run in the pipeline, update the [Config.yaml](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Pipeline/config.yaml) file with the sample names and the fastq file path. 
-  
-Creat environment:
+```bash
+conda env create -f environment.yml
+conda activate viral_diversity
+```
 
-    conda env create -f environment.yml
+All necessary tools (e.g., `snakemake`, `bowtie2`, `lofreq`, `samtools`, `fastp`) will be installed via the provided `environment.yml`.
 
-Activate environment:
+## Demo Instructions
 
-    conda activate ampseq
-    
-Make sure to build reference indexes:
-  
-  bowtie2-build data/reference_index/REJOc-reference.fa data/reference_index/REJOc-reference.fa
-  bowtie2-build data/reference_index/JRCSF-reference.fa data/reference_index/JRCSF-reference.fa
-  
-  lofreq faidx data/reference_index/JRCSF-reference.fa
-  lofreq faidx data/reference_index/REJOc-reference.fa
+Before running the pipeline, ensure all filenames follow the expected naming convention. Each sample name should encode:
 
+* Experiment ID (e.g., `CD00`)
+* Mouse ID (e.g., `m000`)
+* Virus strain (e.g., `JRCSF`)
+* Collection time point (e.g., `00` for week 0)
 
-Run Snakemake:
+If multiple sequencing runs exist for the same sample, merge the FASTQ files into one prior to execution.
 
-    snakemake --cores 2
+### Included Demo Samples
+
+Two demo samples are provided:
+
+* `CD00-m000-00-JRCSF`
+* `CD00-m000-00-REJOc`
+
+These are subsets of actual samples used to verify that the pipeline is functioning correctly.
+
+To specify which samples to process, update the `config.yaml` file with the sample names and corresponding FASTQ file paths:
+[config.yaml](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Pipeline/config.yaml)
+
+### Index Building (One-Time Setup)
+
+Before running Snakemake, build the reference indices:
+
+```bash
+# Bowtie2 indices
+bowtie2-build data/reference_index/REJOc-reference.fa data/reference_index/REJOc-reference.fa
+bowtie2-build data/reference_index/JRCSF-reference.fa data/reference_index/JRCSF-reference.fa
+
+# Lofreq faidx indexing
+lofreq faidx data/reference_index/JRCSF-reference.fa
+lofreq faidx data/reference_index/REJOc-reference.fa
+```
+
+### Running the Pipeline
+
+Once the environment is activated and indices are built, run the full pipeline:
+
+```bash
+snakemake --cores 2
+```

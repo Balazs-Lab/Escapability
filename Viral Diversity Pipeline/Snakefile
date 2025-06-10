@@ -25,7 +25,7 @@ rule filter_sequences:
     shell:
         "fastp --in1 {input.R1} --in2 {input.R2} --out1 {output.R1} --out2 {output.R2} "
         " --trim_tail1 {params.tm} --trim_tail2 {params.tm} --qualified_quality_phred {params.qs} "
-        " --unqualified_percent_limit {params.ps} --html {log}"
+        " --unqualified_percent_limit {params.ps} --html {log} --json {log}"
 
 def get_reference(wildcards):
     reference = config["samples"][wildcards.sample].split("-")[-1].split('_')[0]
