@@ -40,8 +40,6 @@ Each pipeline uses the [Snakemake](https://snakemake.readthedocs.io) workflow en
 
 Run time depends on sample number and compute resources.
 
-The **Viral Escape Pipeline** outputs `.csv` files that report mutation frequencies per sample/mouse. These can be merged into summary files for downstream analysis.
-
 ## Viral Escape Pipeline Output Data
 
 The processed [Viral Escape Data](https://github.com/Balazs-Lab/Escapability/tree/main/Viral%20Escape%20Data) used in the publication is available for download and further analysis.
@@ -51,3 +49,7 @@ After downloading the Excel file, navigate to the **Mutation Dashboard** tab to 
 * Virus-strain-specific amino acid position alignment with HXB2
 * Percent of total reads showing any amino acid change relative to wild type
 * Breakdown of the types and frequencies of amino acid changes
+
+## Escape Barrier Analysis
+
+This analysis calculates the Escape Barrier Scores (AUC of the Escapability Plot), as described in the paper. In order to run this analysis, the full Viral Escape Pipeline will need to have been run and the Viral Haplotype Analysis will have need to have been performed.
