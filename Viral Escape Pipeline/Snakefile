@@ -1,4 +1,4 @@
-configfile: "config.yaml"
+configfile: "configs/JRCSF_DEMO_config.yaml"
 
 rule all:
     input:

@@ -1,0 +1,18 @@
+samples:
+    CD00-m000-00-REJOc: data/fastq_files/CD00-m000-00-REJOc_R1.fastq.gz
+
+merged_output:
+  var_freq: "data/7-merged_output/REJOc_DEMO_var_freq_merged.csv"
+  coverage: "data/7-merged_output/REJOc_DEMO_coverage_merged.csv"
+
+metadata:
+  sample_list: "data/metadata/REJOc_DEMO_VL_figure_samples.csv"
+  experiment_data: "data/static/experiment_data.csv"
+  virus: "REJOc"
+  antibody: "DEMO"
+  HXB2_alignment: "data/static/HXB2 Alignment.xlsx"
+  
+analysis:
+  average_mutation: "data/8-escape_data/2-mutation_freq_summary/REJOc_DEMO_avg_freq.csv"
+  haplotype_all: "data/8-escape_data/3-haplotype_summary_all/REJOc_DEMO_freq_by_sample.csv"
+  haplotype_nonsyn: "data/8-escape_data/4-haplotype_summary_nonsyn/REJOc_DEMO_freq_by_sample.csv"

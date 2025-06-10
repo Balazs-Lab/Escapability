@@ -1,0 +1,46 @@
+Assuming unrestricted shared filesystem usage.
+None
+host: adams-mbp-3.partners.org
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job               count
+--------------  -------
+all                   1
+call                  1
+merge_coverage        1
+total                 3
+
+Select jobs to execute...
+Execute 1 jobs...
+[Tue Jun 10 14:51:05 2025]
+localrule call:
+    input: data/0-reference_index/REJOc-reference.fa, data/4-sorted_reads/CD00-m000-00-REJOc.bam, data/0-bed_file/REJOc.bed
+    output: data/5-calls/CD00-m000-00-REJOc.vcf, data/6-coverage/CD00-m000-00-REJOc.csv
+    jobid: 6
+    reason: Missing output files: data/6-coverage/CD00-m000-00-REJOc.csv
+    wildcards: sample=CD00-m000-00-REJOc
+    resources: tmpdir=/var/folders/k0/3b7hrv0d2n7fs2g57vkng1fm0000gp/T
+
+RuleException:
+CalledProcessError in file "/Users/anitido/Documents/GitHub/Escapability/Viral Escape Pipeline/Snakefile", line 109:
+Command 'set -euo pipefail;  /Users/anitido/miniforge3/envs/viral_escape/bin/python3.12 '/Users/anitido/Documents/GitHub/Escapability/Viral Escape Pipeline/.snakemake/scripts/tmphr549jj3.codon_caller.py'' returned non-zero exit status 1.
+[Tue Jun 10 14:51:06 2025]
+Error in rule call:
+    message: None
+    jobid: 6
+    input: data/0-reference_index/REJOc-reference.fa, data/4-sorted_reads/CD00-m000-00-REJOc.bam, data/0-bed_file/REJOc.bed
+    output: data/5-calls/CD00-m000-00-REJOc.vcf, data/6-coverage/CD00-m000-00-REJOc.csv
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look below for error messages
+[Tue Jun 10 14:51:06 2025]
+Error in rule call:
+    message: None
+    jobid: 6
+    input: data/0-reference_index/REJOc-reference.fa, data/4-sorted_reads/CD00-m000-00-REJOc.bam, data/0-bed_file/REJOc.bed
+    output: data/5-calls/CD00-m000-00-REJOc.vcf, data/6-coverage/CD00-m000-00-REJOc.csv
+Complete log(s): /Users/anitido/Documents/GitHub/Escapability/Viral Escape Pipeline/.snakemake/log/2025-06-10T145105.739047.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

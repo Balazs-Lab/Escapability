@@ -1,4 +1,5 @@
-from CodonCaller import *
+#from CodonCaller import CodonCaller.variant_caller
+import variant_caller 
 import argparse
 
 
