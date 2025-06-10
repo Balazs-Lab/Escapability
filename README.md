@@ -23,18 +23,6 @@ Each pipeline includes an `environment.yml` file listing software dependencies. 
 * [Viral Escape Pipeline Requirements](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/environment.yml)
 * [Viral Diversity Pipeline Requirements](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Pipeline/environment.yml)
 
-## Installation Guide
-
-To install the software for either pipeline:
-
-1. Ensure [Conda](https://conda.io) is installed.
-2. Clone the repository and navigate to the desired pipeline folder.
-3. Create and activate the environment:
-
-   ```bash
-   conda env create -f environment.yml
-   conda activate viral_escape  # or viral_diversity
-   ```
 
 ## Demo / Instructions for Use
 
@@ -50,13 +38,7 @@ Each pipeline uses the [Snakemake](https://snakemake.readthedocs.io) workflow en
 * [Viral Escape Snakefile](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Escape%20Pipeline/Snakefile)
 * [Viral Diversity Snakefile](https://github.com/Balazs-Lab/Escapability/blob/main/Viral%20Diversity%20Pipeline/Snakefile)
 
-Specify the number of cores to parallelize execution:
-
-```bash
-snakemake --cores 4
-```
-
-Run time depends on sample number and compute resources; most individual samples can be processed in under an hour on a typical machine.
+Run time depends on sample number and compute resources.
 
 The **Viral Escape Pipeline** outputs `.csv` files that report mutation frequencies per sample/mouse. These can be merged into summary files for downstream analysis.
 
