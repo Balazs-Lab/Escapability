@@ -34,4 +34,4 @@ This directory contains the escape barrier score Rscript, analysis input data, a
 [Total Escape Barrier Score](https://github.com/Balazs-Lab/Escapability/blob/main/Escape%20Barrier%20Analysis/escape%20barrier%20score/data/TotalEscapeBarrierScore.csv): This table contains the frequency normalized AUC Escape Barrier Scores for each virus-antibody combination. 
 
 
-## Post Escape Viral Load 
+## [Post Escape Viral Load](https://github.com/Balazs-Lab/Escapability/tree/main/Escape%20Barrier%20Analysis/post%20escape%20viral%20load) 
