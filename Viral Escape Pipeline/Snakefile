@@ -1,14 +1,15 @@
-configfile: "config.yaml"
+configfile: "configs/REJOc_3BNC117_config.yaml"
 
 rule all:
     input:
-        #expand("data/5-calls/{sample}.vcf", sample=config["samples"])
-        #expand("data/var_freq/{sample}.csv", sample=config["samples"])
+        #expand("data/5-calls/{sample}.vcf", sample=config["samples"]),
         expand("data/4-sorted_reads/{sample}.bam.bai", sample=config["samples"]),
-        expand("data/6-coverage/{sample}.csv", sample=config["samples"]),
-        #expand("data/haplotypes/{sample}.csv", sample=config["samples"]),
-        "data/var_freq_merged.csv",
-        "data/coverage_merged.csv"
+        #expand("data/6-coverage/{sample}.csv", sample=config["samples"]),
+        #config["merged_output"]["var_freq"],
+        config["merged_output"]["coverage"],
+        config["analysis"]["average_mutation"],
+        config["analysis"]["haplotype_all"],
+        config["analysis"]["haplotype_nonsyn"]
         
 
 
@@ -60,7 +61,7 @@ def get_haplotype_bed(wildcards):
     reference = config["samples"][wildcards.sample].split("-")[-1].split('_')[0]
     return "data/0-bed_file/" + reference + "_haplotypes.bed",
 
-#bowtie2 mappping of filtered reads
+#bowtie2 mapping of filtered reads
 rule bowtie2_map:
     input:
         #ref = "data/0-reference_index/Rp0-reference.fa" + reference,
@@ -102,16 +103,16 @@ rule call:
         b=110,
         cds="Env",
     output:
-        "data/5-calls/{sample}.csv",
+        "data/5-calls/{sample}.vcf",
         "data/6-coverage/{sample}.csv"
     script:
         "scripts/snakemake/codon_caller.py"
 
 rule merge_freq:
     input:
-        expand("data/5-calls/{sample}.csv", sample=config["samples"])
+        expand("data/5-calls/{sample}.vcf", sample=config["samples"])
     output:
-        "data/7-merged_output/var_freq_merged.csv"
+        config["merged_output"]["var_freq"]
     script:
         "scripts/snakemake/merge_aa_freq.py"
 
@@ -119,16 +120,26 @@ rule merge_coverage:
     input:
         expand("data/6-coverage/{sample}.csv", sample=config["samples"])
     output:
-        "data/7-merged_output/coverage_merged.csv"
+        config["merged_output"]["coverage"]
     script:
         "scripts/snakemake/merge_coverage.py"
 
-rule haplotype:
+rule analysis:
     input:
-        fa=get_reference,
-        bam="data/4-sorted_reads/{sample}.bam",
-        bed=get_haplotype_bed
+        var_freq=config["merged_output"]["var_freq"],
+        coverage=config["merged_output"]["coverage"],
+        sample_list=config["metadata"]["sample_list"],
+        exp_df=config["metadata"]["experiment_data"],
+        HXB2_alignment=config["metadata"]["HXB2_alignment"]
+    params:
+        virus=config["metadata"]["virus"],
+        antibody=config["metadata"]["antibody"],
+        min_coverage=25,
+        min_value=0.1
     output:
-        "data/haplotypes/{sample}.csv",
+        average_mutation=config["analysis"]["average_mutation"],
+        haplotype_all=config["analysis"]["haplotype_all"],
+        haplotype_nonsyn=config["analysis"]["haplotype_nonsyn"]
     script:
-        "scripts/haploptype.py"
+        "scripts/snakemake/analysis.py"
+
