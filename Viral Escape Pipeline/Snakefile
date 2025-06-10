@@ -23,14 +23,14 @@ rule filter_sequences:
         qs="25", # the quality value that a base is qualified. Default 15 means phred quality >=Q15 is qualified.
         ps="20" #  how many percents of bases are allowed to be unqualified (0~100). Default 40 means 40%
     log:
-        "logs/fastq/{sample}.html"
+        "logs/fastp/{sample}.html"
     output:
         R1 = "data/2-fastq_filtered/{sample}_R1.fastq.gz",
         R2 = "data/2-fastq_filtered/{sample}_R2.fastq.gz"
     shell:
         "fastp --in1 {input.R1} --in2 {input.R2} --out1 {output.R1} --out2 {output.R2} "
         " --trim_tail1 {params.tm} --trim_tail2 {params.tm} --qualified_quality_phred {params.qs} "
-        " --unqualified_percent_limit {params.ps} --html {log}"
+        " --unqualified_percent_limit {params.ps} --html {log} --json {log}"
 
 
 def get_reference(wildcards):

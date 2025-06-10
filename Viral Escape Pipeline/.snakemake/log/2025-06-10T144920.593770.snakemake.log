@@ -1,9 +1,0 @@
-Assuming unrestricted shared filesystem usage.
-None
-host: adams-mbp-3.partners.org
-Building DAG of jobs...
-MissingInputException in rule analysis in file "/Users/anitido/Documents/GitHub/Escapability/Viral Escape Pipeline/Snakefile", line 127:
-Missing input files for rule analysis:
-    output: data/8-escape_data/2-mutation_freq_summary/REJOc_DEMO_avg_freq.csv, data/8-escape_data/3-haplotype_summary_all/REJOc_DEMO_freq_by_sample.csv, data/8-escape_data/4-haplotype_summary_nonsyn/REJOc_DEMO_freq_by_sample.csv
-    affected files:
-        data/static/experiment_data.csv
