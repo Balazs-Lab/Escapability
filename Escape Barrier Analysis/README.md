@@ -21,7 +21,9 @@ This directory contains the escape barrier score Rscript, analysis input data, a
 
 [Path Frequencies](https://github.com/Balazs-Lab/Escapability/blob/main/Escape%20Barrier%20Analysis/escape%20barrier%20score/data/Path%20Frequencies.xlsx): This table contains the haplotype specific frequency of each virus-antibody escape path combination. This data is used to scale the relative contributions of each esacpe path to the total Escape Barrier score.  
 
-### [Script](https://github.com/Balazs-Lab/Escapability/blob/main/Escape%20Barrier%20Analysis/escape%20barrier%20score/EscapeBarrierScore.R)
+### Script
+
+[EscapeBarrierScore.R](https://github.com/Balazs-Lab/Escapability/blob/main/Escape%20Barrier%20Analysis/escape%20barrier%20score/EscapeBarrierScore.R)
 
 
 ### Output Data
